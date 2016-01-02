@@ -1,0 +1,10 @@
+﻿<Window x:Class="CounterStrike.View.GameMainWimdow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="GameMainWimdow" Height="365.6" Width="654.4">
+    <Grid>
+        
+        <ListBox Grid.Column="1" Name="ListBoxVideos" ItemsSource="{Binding Path=VideosDictionaty, UpdateSourceTrigger=PropertyChanged}" 
+                     SelectedIndex="{Binding Path=CurrentVideoId, UpdateSourceTrigger=PropertyChanged}"></ListBox>
+    </Grid>
+</Window>
