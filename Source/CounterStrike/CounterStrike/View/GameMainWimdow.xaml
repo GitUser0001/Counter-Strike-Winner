@@ -1,12 +1,23 @@
-﻿<Window x:Class="CounterStrike.View.GameMainWimdow"
+﻿<Window x:Name="MainWindowScreen"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="GameMainWimdow" Height="365.6" Width="654.4">
-    <Grid>
+        xmlns:Controls="clr-namespace:CounterStrike.Controls" x:Class="CounterStrike.View.GameMainWimdow"
+        Title="GameMainWimdow" Height="365.6" Width="654.4" 
+        WindowStartupLocation="CenterScreen" WindowStyle="None" AllowsTransparency="True" 
+        ResizeMode="NoResize">
 
-        <ListBox Grid.Column="1" Name="ListBoxVideos" ItemsSource="{Binding Path=Players, UpdateSourceTrigger=PropertyChanged}" 
-                     SelectedIndex="{Binding Path=CurrentVideoId, UpdateSourceTrigger=PropertyChanged}"></ListBox>
+    <Grid x:Name="mainGrid">
+        <Grid x:Name="gridControls" IsEnabled="False" Background="LightGray" Opacity="0.7">
+        
+            <!--<ListBox Grid.Column="1" Name="ListBoxVideos" ItemsSource="{Binding Path=Players, UpdateSourceTrigger=PropertyChanged}" 
+                         SelectedIndex="{Binding Path=CurrentVideoId, UpdateSourceTrigger=PropertyChanged}"></ListBox>-->
 
-        <ListBox ItemsSource="{Binding Players}"></ListBox>
+            <!--<ListBox ItemsSource="{Binding Players}"/>-->
+
+            <ComboBox HorizontalAlignment="Left" Margin="43,151,0,0" VerticalAlignment="Top" Width="120"/>
+            <ComboBox HorizontalAlignment="Left" Margin="65,208,0,0" VerticalAlignment="Top" Width="120"/>
+
+        </Grid>
+        <Controls:SignInControl HorizontalAlignment="Left" Margin="238,77,0,0" VerticalAlignment="Top"/>
     </Grid>
 </Window>
