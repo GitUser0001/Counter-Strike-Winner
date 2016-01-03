@@ -21,12 +21,11 @@ namespace CounterStrike.Model
             }
         }
 
-        private static ObservableCollection<Player> GeneratePlayerRepository()
+        public static ObservableCollection<Player> GeneratePlayerRepository()
         {
-            ObservableCollection<Player> players = new ObservableCollection<Player>();
-            players.Add(new Player("Dan", "GitUser0001"));
-            players.Add(new Player("Pashka", "BlackRak"));
-            return players;
+            _players.Add(new Player("Dan", "GitUser0001"));
+            _players.Add(new Player("Pashka", "BlackRak"));
+            return _players;
         }
     }
 }

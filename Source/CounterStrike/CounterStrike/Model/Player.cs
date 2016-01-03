@@ -8,14 +8,14 @@ namespace CounterStrike.Model
 {
     public class Player
     {
-        public string FirstName { get; set; }
-        public string NickName { get; set; }
-
         public Player(string firstName, string lastName)
         {
             FirstName = firstName;
             NickName = lastName;
         }
+
+        public string FirstName { get; set; }
+        public string NickName { get; set; }
 
         public override string ToString()
         {

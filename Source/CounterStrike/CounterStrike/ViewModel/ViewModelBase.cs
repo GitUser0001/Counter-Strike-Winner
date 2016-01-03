@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CounterStrike.ViewModel
 {
-    public abstract class ViewModelBase : INotifyPropertyChanged, IDisposable
+    public abstract class ViewModelBase : INotifyPropertyChanged //, IDisposable
     {
         protected ViewModelBase()
         {
@@ -24,8 +24,8 @@ namespace CounterStrike.ViewModel
             }
         }
 
-        public void Dispose()
-        {
-        }
+        //public void Dispose()
+        //{
+        //}
     }
 }

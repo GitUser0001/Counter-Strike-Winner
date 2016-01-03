@@ -4,19 +4,25 @@
     <StringProperty Name="MergeSettingsFiles">Linked</StringProperty>
   </GlobalSettings>
   <Analyzers>
-    <Analyzer AnalyzerId="StyleCopPlus.StyleCopPlusRules">
+    <Analyzer AnalyzerId="StyleCop.CSharp.LayoutRules">
       <Rules>
-        <Rule Name="CodeLineMustNotEndWithWhitespace">
+        <Rule Name="CurlyBracketsMustNotBeOmitted">
+          <RuleSettings>
+            <BooleanProperty Name="Enabled">False</BooleanProperty>
+          </RuleSettings>
+        </Rule>
+        <Rule Name="ClosingCurlyBracketMustBeFollowedByBlankLine">
+          <RuleSettings>
+            <BooleanProperty Name="Enabled">False</BooleanProperty>
+          </RuleSettings>
+        </Rule>
+        <Rule Name="ElementsMustBeSeparatedByBlankLine">
           <RuleSettings>
             <BooleanProperty Name="Enabled">False</BooleanProperty>
           </RuleSettings>
         </Rule>
       </Rules>
-      <AnalyzerSettings>
-        <StringProperty Name="AdvancedNaming_PrivateInstanceField">_$(aaBb)</StringProperty>
-        <StringProperty Name="AdvancedNaming_PrivateStaticField">_$(aaBb)</StringProperty>
-        <StringProperty Name="AdvancedNaming_PrivateConst">_$(aaBb):$(AA_BB)</StringProperty>
-      </AnalyzerSettings>
+      <AnalyzerSettings />
     </Analyzer>
   </Analyzers>
 </StyleCopSettings>
