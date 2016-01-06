@@ -12,6 +12,7 @@ namespace CounterStrike.Infrastructure
         private readonly Action<object> _execute;
         private readonly Predicate<object> _canExecute;
 
+        // No upstream public or protected callers
         public RelayCommand(Action<object> execute)
             : this(execute, null)
         {
