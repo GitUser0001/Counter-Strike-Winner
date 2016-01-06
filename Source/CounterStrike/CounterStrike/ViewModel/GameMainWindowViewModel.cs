@@ -36,7 +36,7 @@ namespace CounterStrike.ViewModel
         }
 
         public void ExecuteAddPlayerCommand(object parameter)
-        {            
+        {
         }
 
         public bool CanExecuteAddPlayerCommand(object parameter)
