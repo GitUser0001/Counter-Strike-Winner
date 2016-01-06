@@ -30,7 +30,6 @@ namespace CounterStrike.ViewModel
                 {
                     _addPlayerCommand = new RelayCommand(ExecuteAddPlayerCommand, CanExecuteAddPlayerCommand);
                 }
-
                 return _addPlayerCommand;
             }
         }
