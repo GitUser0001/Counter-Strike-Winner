@@ -7,10 +7,10 @@ using System.Windows.Input;
 
 namespace CounterStrike.Infrastructure
 {
-    class RelayCommand : ICommand
+    public class RelayCommand : ICommand
     {
-        readonly Action<object> _execute;
-        readonly Predicate<object> _canExecute;
+        private readonly Action<object> _execute;
+        private readonly Predicate<object> _canExecute;
 
         public RelayCommand(Action<object> execute)
             : this(execute, null)
@@ -28,21 +28,22 @@ namespace CounterStrike.Infrastructure
             _canExecute = canExecute;
         }
 
-        public bool CanExecute(object parameter)
-        {
-            return _canExecute == null ? true : _canExecute.Invoke(parameter);
-        }
-
         public event EventHandler CanExecuteChanged
         {
             add
             {
                 CommandManager.RequerySuggested += value;
             }
+
             remove
             {
                 CommandManager.RequerySuggested -= value;
             }
+        }
+
+        public bool CanExecute(object parameter)
+        {
+            return _canExecute == null ? true : _canExecute.Invoke(parameter);
         }
 
         public void Execute(object parameter)

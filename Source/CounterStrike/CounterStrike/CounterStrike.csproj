@@ -44,7 +44,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <CodeAnalysisRuleSet>..\..\Configs\AllRules.ruleset</CodeAnalysisRuleSet>
-    <RunCodeAnalysis>true</RunCodeAnalysis>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -90,6 +90,9 @@
     <Compile Include="Model\PlayersRepository.cs" />
     <Compile Include="ViewModel\GameMainWindowViewModel.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
+    <Compile Include="View\EnvelopeWindow.xaml.cs">
+      <DependentUpon>EnvelopeWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\GameMainWimdow.xaml.cs">
       <DependentUpon>GameMainWimdow.xaml</DependentUpon>
     </Compile>
@@ -147,6 +150,10 @@
     <Folder Include="Controls\" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="View\EnvelopeWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\GameMainWimdow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

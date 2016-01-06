@@ -12,7 +12,7 @@ namespace CounterStrike.ViewModel
 {
     public class GameMainWindowViewModel : ViewModelBase
     {
-
+        private RelayCommand _addPlayerCommand;
 
         public ObservableCollection<Player> Players
         {
@@ -22,13 +22,15 @@ namespace CounterStrike.ViewModel
             }
         }
 
-        RelayCommand _addPlayerCommand;
         public ICommand AddPlayer
         {
             get
             {
                 if (_addPlayerCommand == null)
+                {
                     _addPlayerCommand = new RelayCommand(ExecuteAddPlayerCommand, CanExecuteAddPlayerCommand);
+                }
+
                 return _addPlayerCommand;
             }
         }
