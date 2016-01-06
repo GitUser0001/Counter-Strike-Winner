@@ -16,7 +16,10 @@ namespace CounterStrike.Model
             get
             {
                 if (_players == null)
-                    _players = new ObservableCollection<Player>();
+                {
+                    _players = GeneratePlayerRepository();
+                }
+
                 return _players;
             }
         }

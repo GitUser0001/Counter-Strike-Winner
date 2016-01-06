@@ -35,6 +35,7 @@ namespace CounterStrike.Infrastructure
             {
                 CommandManager.RequerySuggested += value;
             }
+
             remove
             {
                 CommandManager.RequerySuggested -= value;

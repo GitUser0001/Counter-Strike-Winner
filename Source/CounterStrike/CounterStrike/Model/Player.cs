@@ -15,6 +15,7 @@ namespace CounterStrike.Model
         }
 
         public string FirstName { get; set; }
+
         public string NickName { get; set; }
 
         public override string ToString()
