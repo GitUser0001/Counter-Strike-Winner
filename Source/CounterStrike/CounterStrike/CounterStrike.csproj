@@ -175,6 +175,15 @@
   <ItemGroup>
     <Resource Include="Media\back.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Media\Models\" />
+    <Folder Include="Media\Weapons\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Media\Counter-Strike-Condition-Zero.png" />
+    <Resource Include="Media\Counter-Strike-Deleted-Scenes.png" />
+    <Resource Include="Media\StandBy.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
