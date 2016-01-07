@@ -126,5 +126,37 @@
             </Setter>
         </Style>
 
+        <Style x:Key="listBoxPlayer" TargetType="{x:Type ListBox}">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="ItemsPanel">
+                <Setter.Value>
+                    <ItemsPanelTemplate>
+                        <WrapPanel>
+                        </WrapPanel>
+                    </ItemsPanelTemplate>
+                </Setter.Value>
+            </Setter>
+
+            <Setter Property="ItemTemplate">
+                <Setter.Value>
+                    <DataTemplate>
+                        <WrapPanel>
+                            <Border BorderBrush="AliceBlue" BorderThickness="2" Margin="3" CornerRadius="2">
+                                <Grid>
+                                    <Image Height="70" VerticalAlignment="Top" Width="65" Source="{Binding Source}"/>
+                                    <!--<StackPanel Margin="0,145,0.4,-0.4">
+                                        <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" TextAlignment="Center" FontStyle="Italic" Text="{Binding Author}" VerticalAlignment="Top" Width="65"/>
+                                    </StackPanel>-->
+                                </Grid>
+                            </Border>
+                        </WrapPanel>
+                    </DataTemplate>
+                </Setter.Value>
+            </Setter>
+
+            <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled"/>
+        </Style>
+
+
     </Application.Resources>
 </Application>

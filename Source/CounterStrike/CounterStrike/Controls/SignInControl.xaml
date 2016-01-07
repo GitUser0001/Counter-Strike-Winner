@@ -3,39 +3,70 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:classicTheme="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Classic"
-             Background="Transparent">
+             Background="Transparent" Height="259" Width="389">
 
     <Border BorderBrush="Gray" BorderThickness="2" Opacity="0.9" CornerRadius="10">
-        <Grid Background="Transparent" Height="206" Width="294">
+        <Grid Background="Transparent" Margin="27,28,19,8">
             <Grid.RowDefinitions>
                 <RowDefinition Height="29*"/>
                 <RowDefinition Height="74*"/>
             </Grid.RowDefinitions>
 
             <!--Zero row-->
-            <TextBlock HorizontalAlignment="Left" Margin="75,10,0,0" TextWrapping="Wrap" Grid.Row="0"
+            <TextBlock HorizontalAlignment="Left" Margin="99,22,0,0" TextWrapping="Wrap" Grid.Row="0"
                    Text="Counter strike" VerticalAlignment="Top" Foreground="#0E5A8D" 
-                   FontSize="22" FontWeight="Medium" Height="37" Width="160"/>
-
-
+                   FontSize="22" FontWeight="Medium" Height="38" Width="160" RenderTransformOrigin="0.5,0.5">
+                <TextBlock.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="-7.527"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </TextBlock.RenderTransform>
+            </TextBlock>
 
             <!--Last row-->
             <StackPanel Orientation="Vertical" Grid.Row="1">
 
-                <Button Content="Ok" HorizontalAlignment="Left" Margin="120,10,0,0"
-        		VerticalAlignment="Top" Width="75" FontWeight="Medium"
-                    Style="{DynamicResource MetroButton}"/>
 
-                <Button Content="Cancel" HorizontalAlignment="Left" Margin="120,15,0,0"
-        		VerticalAlignment="Top" Width="75" FontWeight="Medium"
-                    Style="{DynamicResource MetroButton}"/>
+                <Button Margin="110,10,0,0" VerticalAlignment="Top" 
+                	FontWeight="Medium" Style="{StaticResource MetroButton}" 
+                        Height="40" HorizontalAlignment="Left" Width="128">
 
-                <Button x:Name="btnLeaveApp" Margin="120,10,0,0" VerticalAlignment="Top" 
-                	FontWeight="Medium" Style="{StaticResource MetroButton}" Height="45" HorizontalAlignment="Left">
+                    <StackPanel Orientation="Horizontal" Margin="-30,0,0,0">
+                        <Image Source="/CounterStrike;component/Media/Counter-Strike-Condition-Zero.png"
+                                Width="30" Height="30"/>
+                        <TextBlock FontSize="14" Margin="4 0 0 0"
+                			VerticalAlignment="Center"
+                			Text="Single" />
+                    </StackPanel>
+                </Button>
+
+
+                <Button Margin="110,10,0,0" VerticalAlignment="Top" 
+                	FontWeight="Medium" Style="{StaticResource MetroButton}" 
+                        Height="40" HorizontalAlignment="Left" Width="128">
 
                     <StackPanel Orientation="Horizontal">
-                        <Image Source="/CounterStrike;component/Media/StandBy.png"/>
-                        <TextBlock FontSize="12" Margin="4 0 0 0"
+                        <Image Source="/CounterStrike;component/Media/Counter-Strike-Condition-Zero.png"
+                                Width="30" Height="30"/>
+                        <TextBlock FontSize="14" Margin="4 0 4 0"
+                			VerticalAlignment="Center"
+                			Text="Multi" />
+                        <Image Source="/CounterStrike;component/Media/Counter-Strike-Deleted-Scenes.png"
+                                Width="30" Height="30"/>
+                    </StackPanel>
+                </Button>
+
+                <Button Margin="110,10,0,0" VerticalAlignment="Top" 
+                	FontWeight="Medium" Style="{StaticResource MetroButton}" 
+                        Height="40" HorizontalAlignment="Left" Width="128">
+
+                    <StackPanel Orientation="Horizontal" Margin="-24,0,0,0">
+                        <Image Source="/CounterStrike;component/Media/StandBy.png"
+                                Width="30" Height="30"/>
+                        <TextBlock FontSize="14" Margin="4 0 0 0"
                 			VerticalAlignment="Center"
                 			Text="Logout" />
                     </StackPanel>
@@ -44,13 +75,29 @@
             </StackPanel>
 
             <!--Images row-->
-            <Image HorizontalAlignment="Left" Height="75" Margin="289,-28,-81,0" 
-                   VerticalAlignment="Top" Width="86" 
-                   Source="/CounterStrike;component/Media/logo.png"/>
+            <Image HorizontalAlignment="Left" Height="100" Margin="-72,-60,0,0" 
+                   VerticalAlignment="Top" Width="260" 
+                   Source="/CounterStrike;component/Media/logo2.png" />
 
-            <Image HorizontalAlignment="Left" Height="100" Margin="-30,-32,0,0" 
-                   VerticalAlignment="Top" Width="100" 
-                   Source="/CounterStrike;component/Media/counterlogo.png" Grid.RowSpan="2"/>
+            <Image HorizontalAlignment="Left" Height="110" Margin="272,-48,-45,0" 
+                   VerticalAlignment="Top" Width="112" 
+                   Source="/CounterStrike;component/Media/global_offensive.png"/>
+
+            <Image HorizontalAlignment="Left" Height="167" Margin="-72,38,0,-48" 
+            	VerticalAlignment="Top" Width="163" 
+                   Source="/CounterStrike;component/Media/logo.png" Grid.Row="1" />
+
+            <!--<Separator HorizontalAlignment="Left" Height="87" Margin="-17,36,0,0" Grid.Row="1" Background="Red"
+                       VerticalAlignment="Top" Width="343" RenderTransformOrigin="0.5,0.5">
+                <Separator.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="90"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Separator.RenderTransform>
+            </Separator>-->
 
         </Grid>
     </Border>
