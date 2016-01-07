@@ -14,7 +14,7 @@ namespace CounterStrike.ViewModel
     {
         private RelayCommand _addPlayerCommand;
 
-        public ObservableCollection<Player> Players
+        public static ObservableCollection<Player> Players
         {
             get
             {
