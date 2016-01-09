@@ -44,7 +44,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <CodeAnalysisRuleSet>..\..\Configs\AllRules.ruleset</CodeAnalysisRuleSet>
-    <RunCodeAnalysis>false</RunCodeAnalysis>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -113,6 +113,9 @@
     <Compile Include="Controls\CharactersStatusControl.xaml.cs">
       <DependentUpon>CharactersStatusControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\GameControl.xaml.cs">
+      <DependentUpon>GameControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\MapPickerControl.xaml.cs">
       <DependentUpon>MapPickerControl.xaml</DependentUpon>
     </Compile>
@@ -126,9 +129,15 @@
       <DependentUpon>SignInControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\RelayCommands.cs" />
+    <Compile Include="Model\EnvelopeWindowManager.cs" />
+    <Compile Include="Model\GameSettings.cs" />
+    <Compile Include="Model\Map.cs" />
     <Compile Include="Model\Player.cs" />
     <Compile Include="Model\PlayersRepository.cs" />
+    <Compile Include="ViewModel\EnvelopeWindowViewModel.cs" />
     <Compile Include="ViewModel\GameMainWindowViewModel.cs" />
+    <Compile Include="ViewModel\PlayerPickerControlViewModel.cs" />
+    <Compile Include="ViewModel\SignInControlViewModel.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
     <Compile Include="View\EnvelopeWindow.xaml.cs">
       <DependentUpon>EnvelopeWindow.xaml</DependentUpon>
@@ -193,6 +202,10 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="Controls\CharactersStatusControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\GameControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

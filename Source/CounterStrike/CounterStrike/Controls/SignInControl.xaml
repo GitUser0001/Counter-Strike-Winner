@@ -3,8 +3,13 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:classicTheme="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Classic"
+                xmlns:VM="clr-namespace:CounterStrike.ViewModel"
              Background="Transparent" Height="259" Width="389">
 
+    <UserControl.DataContext>
+        <VM:SignInControlViewModel></VM:SignInControlViewModel>
+    </UserControl.DataContext>
+    
     <Border BorderBrush="Gray" BorderThickness="2" Opacity="0.9" CornerRadius="10">
         <Grid Background="Transparent" Margin="27,28,19,8">
             <Grid.RowDefinitions>
@@ -30,7 +35,8 @@
             <StackPanel Orientation="Vertical" Grid.Row="1">
 
 
-                <Button Margin="110,10,0,0" VerticalAlignment="Top" 
+                <Button Command="{Binding SelectSingleMod}"
+                    Margin="110,10,0,0" VerticalAlignment="Top" 
                 	FontWeight="Medium" Style="{StaticResource MetroButton}" 
                         Height="40" HorizontalAlignment="Left" Width="128">
 
@@ -44,7 +50,8 @@
                 </Button>
 
 
-                <Button Margin="110,10,0,0" VerticalAlignment="Top" 
+                <Button Command="{Binding SelectMultyMod}"
+                    Margin="110,10,0,0" VerticalAlignment="Top" 
                 	FontWeight="Medium" Style="{StaticResource MetroButton}" 
                         Height="40" HorizontalAlignment="Left" Width="128">
 
@@ -59,7 +66,8 @@
                     </StackPanel>
                 </Button>
 
-                <Button Margin="110,10,0,0" VerticalAlignment="Top" 
+                <Button Command="{Binding Logout}"
+                    Margin="110,10,0,0" VerticalAlignment="Top" 
                 	FontWeight="Medium" Style="{StaticResource MetroButton}" 
                         Height="40" HorizontalAlignment="Left" Width="128">
 

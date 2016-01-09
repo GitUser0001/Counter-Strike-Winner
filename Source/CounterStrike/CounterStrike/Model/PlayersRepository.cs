@@ -26,8 +26,8 @@ namespace CounterStrike.Model
 
         public static ObservableCollection<Player> GeneratePlayerRepository()
         {
-            _players.Add(new Player("Dan", "GitUser0001"));
-            _players.Add(new Player("Pashka", "BlackRak"));
+            //_players.Add(new Player("Dan", "GitUser0001"));
+            //_players.Add(new Player("Pashka", "BlackRak"));
             return _players;
         }
     }
