@@ -17,6 +17,7 @@ namespace CounterStrike.Model
         private static PlayerPickerControl _playerTwoPickerControl;
         private static MapPickerControl _mapPickerControl;
         private static GameControl _gameControl;
+        private static CharactersStatusControl _charactersStatusControl;
 
         private static SignInControl SignInControl
         {
@@ -103,6 +104,23 @@ namespace CounterStrike.Model
             }
         }
 
+        private static CharactersStatusControl CharactersStatusControl
+        {
+            get
+            {
+                if (_charactersStatusControl == null)
+                {
+                    _charactersStatusControl = new CharactersStatusControl();
+                }
+
+                return _charactersStatusControl;
+            }
+            set
+            {
+                _charactersStatusControl = value;
+            }
+        }
+
         public static void SetEnvelopeWindow(EnvelopeWindowViewModel mainWindow)
         {
             _mainWindow = mainWindow;
@@ -159,6 +177,7 @@ namespace CounterStrike.Model
             Application.Current.Dispatcher.BeginInvoke(new Action(() =>
             {
                 _mainWindow.GameView = MapPickerControl;
+                _mainWindow.StatusBar = CharactersStatusControl;
             }));
         }
 
