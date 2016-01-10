@@ -50,7 +50,6 @@
     <Rule Id="CA1050" Action="Error" />
     <Rule Id="CA1051" Action="Error" />
     <Rule Id="CA1052" Action="Error" />
-    <Rule Id="CA1053" Action="Error" />
     <Rule Id="CA1054" Action="Error" />
     <Rule Id="CA1055" Action="Error" />
     <Rule Id="CA1056" Action="Error" />

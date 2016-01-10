@@ -119,9 +119,6 @@
     <Compile Include="Controls\MapPickerControl.xaml.cs">
       <DependentUpon>MapPickerControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\MapSelectionControl.xaml.cs">
-      <DependentUpon>MapSelectionControl.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Controls\PlayerPickerControl.xaml.cs">
       <DependentUpon>PlayerPickerControl.xaml</DependentUpon>
     </Compile>
@@ -134,6 +131,7 @@
     <Compile Include="Model\Map.cs" />
     <Compile Include="Model\Player.cs" />
     <Compile Include="ViewModel\EnvelopeWindowViewModel.cs" />
+    <Compile Include="ViewModel\MapPickerControlViewModel.cs" />
     <Compile Include="ViewModel\PlayerPickerControlViewModel.cs" />
     <Compile Include="ViewModel\SignInControlViewModel.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
@@ -208,10 +206,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\MapSelectionControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Controls\PlayerPickerControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -233,9 +227,7 @@
   <ItemGroup>
     <Resource Include="Media\back.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Media\Maps\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Resource Include="Media\Counter-Strike-Condition-Zero.png" />
     <Resource Include="Media\Counter-Strike-Deleted-Scenes.png" />
@@ -251,6 +243,11 @@
     <Resource Include="Media\Models\counterstrike1.png" />
     <Resource Include="Media\Models\counterstrike3_256.png" />
     <Resource Include="Media\Models\policeman.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Media\Maps\de_aztec.jpeg" />
+    <Resource Include="Media\Maps\de_dust2.jpg" />
+    <Resource Include="Media\Maps\de_inferno.bmp" />
   </ItemGroup>
   <!--=======
 >>>>>>> 74a37c8c24e70c6c926ebf2e36258519e7965171-->

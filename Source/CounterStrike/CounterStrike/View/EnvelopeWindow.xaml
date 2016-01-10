@@ -10,8 +10,8 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto" MinHeight="305"/>
+            <RowDefinition Height="Auto" MinHeight="3"/>
         </Grid.RowDefinitions>
 
         <Grid Grid.Column="0" Grid.Row="0">
@@ -36,7 +36,7 @@
             <Grid Grid.Column="1" Grid.Row="0">
                 <ContentPresenter Content="{Binding MiddleView, UpdateSourceTrigger=PropertyChanged}"/>
             </Grid>
-            
+
             <Grid Grid.Column="2" Grid.Row="0">
                 <ContentPresenter Content="{Binding RightView, UpdateSourceTrigger=PropertyChanged}"/>
             </Grid>

@@ -2,21 +2,27 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" Height="225" Width="300">
+             xmlns:VM="clr-namespace:CounterStrike.ViewModel"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" Height="281.5" Width="342.5">
+
+    <UserControl.DataContext>
+        <VM:MapPickerControlViewModel></VM:MapPickerControlViewModel>
+    </UserControl.DataContext>
 
     <Border BorderBrush="Gray" BorderThickness="2" Opacity="0.9" CornerRadius="10">
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="141*"/>
-                <ColumnDefinition Width="155*"/>
+                <ColumnDefinition Width="71*"/>
+                <ColumnDefinition Width="98*"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="62*"/>
-                <RowDefinition Height="209*"/>
+                <RowDefinition Height="21*"/>
+                <RowDefinition Height="91*"/>
+                <RowDefinition Height="27*"/>
             </Grid.RowDefinitions>
 
             <!--*********************************************Zero row*********************************************-->
-            <TextBlock HorizontalAlignment="Left" Margin="83,16,0,0" TextWrapping="Wrap" Grid.Row="0"
+            <TextBlock HorizontalAlignment="Left" Margin="83,10,0,0" TextWrapping="Wrap" Grid.Row="0"
                    Text="Select map" VerticalAlignment="Top" Foreground="#0E5A8D" 
                    FontSize="22" FontWeight="Medium" Height="29" Width="127" Grid.ColumnSpan="2"/>
 
@@ -29,27 +35,39 @@
         		FontSize="18" FontWeight="Medium" VerticalAlignment="Top" Grid.Row="1" Height="24" Width="45" />
 
 
-            <StackPanel Margin="16,47,19,10" Orientation="Vertical" Grid.Row="1">
+            <StackPanel Margin="16,47,10,0" Orientation="Vertical" Grid.Row="1" Height="118" VerticalAlignment="Top">
 
-                <Button VerticalAlignment="Top" Content="Map1" Margin="5"
+                <Button VerticalAlignment="Top" Content="de__dust2" Margin="5" Command="{Binding SelectMap1}"
             		FontWeight="Medium" Style="{StaticResource MetroButton}" 
             		Height="28" HorizontalAlignment="Left" Width="94"/>
 
-                <Button VerticalAlignment="Top" Content="Map2" Margin="5"
+                <Button VerticalAlignment="Top" Content="de__aztec" Margin="5" Command="{Binding SelectMap2}"
             		FontWeight="Medium" Style="{StaticResource MetroButton}" 
             		Height="28" HorizontalAlignment="Left" Width="94"/>
 
-                <Button VerticalAlignment="Top" Content="Map3" Margin="5"
+                <Button VerticalAlignment="Top" Content="de__inferno" Margin="5" Command="{Binding SelectMap3}"
             		FontWeight="Medium" Style="{StaticResource MetroButton}" 
             		Height="28" HorizontalAlignment="Left" Width="94"/>
 
             </StackPanel>
-            
+
             <!--*********************************************First row Column first*********************************************-->
             <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" 
             	Text="Preview" Foreground="#FFDE9731" Margin="10,13,0,0"
-            	FontSize="18" FontWeight="Medium" VerticalAlignment="Top" Grid.Row="1" Grid.Column="1" />
-            <Image Grid.Column="1" HorizontalAlignment="Left" Height="113" Margin="10,47,0,0" Grid.Row="1" VerticalAlignment="Top" Width="135" Source="/CounterStrike;component/Media/Models/counterstrike3_256.png"/>
+            	FontSize="18" FontWeight="Medium" VerticalAlignment="Top" Grid.Row="1" Grid.Column="1" Height="24" Width="64" />
+
+            <Image Grid.Column="1" HorizontalAlignment="Left" Height="123" Margin="10,42,0,0" Grid.Row="1" 
+                   VerticalAlignment="Top" Width="176" Source="{Binding MapImagePath}"/>
+
+
+            <!--*********************************************Second row Column second*********************************************-->
+            <Separator HorizontalAlignment="Left" Height="18" Margin="5,0,0,0" Grid.Row="2"
+            	VerticalAlignment="Top" Width="323" Background="#FFDE9731" Grid.ColumnSpan="2"/>
+
+
+            <Button VerticalAlignment="Top" Content="Confirm" Margin="92,18,0,0" Command="{Binding ConfirmMap}"
+            		FontWeight="Medium" Style="{StaticResource MetroButton}" 
+            		Height="28" HorizontalAlignment="Left" Width="94" Grid.Column="1" Grid.Row="2"/>
 
         </Grid>
     </Border>

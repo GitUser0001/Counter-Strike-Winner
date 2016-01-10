@@ -112,7 +112,7 @@ namespace CounterStrike.ViewModel
 
         public bool CanExecuteConfirmPlayerCommand(object parameter)
         {
-            return _currPlayer == null && PlayerColor != Color.FromArgb(0,0,0,0) && PlayerRegionNumber != -1;
+            return _currPlayer == null && PlayerColor != Color.FromArgb(0, 0, 0, 0) && PlayerRegionNumber != -1;
         }
     }
 }
