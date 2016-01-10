@@ -1,5 +1,6 @@
 ﻿using CounterStrike.Infrastructure;
 using CounterStrike.Model;
+using CounterStrikeLibrary;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,6 +25,8 @@ namespace CounterStrike.ViewModel
         private string _playerStatus = "Confrm";
 
         private bool _isNotConfirmed = true;
+
+        private string _nickName;
 
         public int PlayerRegionNumber
         {
@@ -91,6 +94,19 @@ namespace CounterStrike.ViewModel
             }
         }
 
+        public string NickName
+        {
+            get
+            {
+                return _nickName;
+            }
+            set
+            {
+                _nickName = value;
+                OnPropertyChanged("NickName");
+            }
+        }
+
         public ICommand ConfirmPlayer
         {
             get
@@ -106,13 +122,29 @@ namespace CounterStrike.ViewModel
             PlayerStatus = "Conformed";
             IsNotConfirmed = false;
             PlayerWeaponNumber = 1;
-            _currPlayer = new Player(PlayerRegionNumber, PlayerWeaponNumber, PlayerColor);
+            PlayerType playerType;
+
+            switch (PlayerRegionNumber)
+            {
+                case 0:
+                    playerType = PlayerType.Terrorist;
+                    break;
+                case 1:
+                    playerType = PlayerType.CounterTerrorist;
+                    break;
+                default:
+                    playerType = PlayerType.ADMIN;
+                    break;
+            }
+
+            _currPlayer = new Player(NickName, playerType, PlayerWeaponNumber, PlayerColor);
             GameSettings.AddPlayer(_currPlayer);
         }
 
         public bool CanExecuteConfirmPlayerCommand(object parameter)
         {
-            return _currPlayer == null && PlayerColor != Color.FromArgb(0, 0, 0, 0) && PlayerRegionNumber != -1;
+            return _currPlayer == null && !string.IsNullOrEmpty(NickName) &&
+                PlayerColor != Color.FromArgb(0, 0, 0, 0) && PlayerRegionNumber != -1;
         }
     }
 }

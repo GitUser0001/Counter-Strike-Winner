@@ -56,8 +56,8 @@
             	Text="Preview" Foreground="#FFDE9731" Margin="10,13,0,0"
             	FontSize="18" FontWeight="Medium" VerticalAlignment="Top" Grid.Row="1" Grid.Column="1" Height="24" Width="64" />
 
-            <Image Grid.Column="1" HorizontalAlignment="Left" Height="123" Margin="10,42,0,0" Grid.Row="1" 
-                   VerticalAlignment="Top" Width="176" Source="{Binding MapImagePath}"/>
+            <Canvas Grid.Column="1" HorizontalAlignment="Left" Height="123" Margin="10,42,0,0" Grid.Row="1" 
+                   VerticalAlignment="Top" Width="176" Background="{Binding Path=Map.BackgroundImage, UpdateSourceTrigger=PropertyChanged}"/>
 
 
             <!--*********************************************Second row Column second*********************************************-->

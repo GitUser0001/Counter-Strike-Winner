@@ -110,9 +110,6 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Controls\CharactersStatusControl.xaml.cs">
-      <DependentUpon>CharactersStatusControl.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Controls\GameControl.xaml.cs">
       <DependentUpon>GameControl.xaml</DependentUpon>
     </Compile>
@@ -126,11 +123,16 @@
       <DependentUpon>SignInControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\RelayCommands.cs" />
+    <Compile Include="Model\CounterTeroristMechanics.cs" />
     <Compile Include="Model\EnvelopeWindowManager.cs" />
     <Compile Include="Model\GameSettings.cs" />
+    <Compile Include="Model\IPlayerMechanics.cs" />
     <Compile Include="Model\Map.cs" />
+    <Compile Include="Model\MapRepository.cs" />
     <Compile Include="Model\Player.cs" />
+    <Compile Include="Model\TeroristMechanics.cs" />
     <Compile Include="ViewModel\EnvelopeWindowViewModel.cs" />
+    <Compile Include="ViewModel\GameControlViewModel.cs" />
     <Compile Include="ViewModel\MapPickerControlViewModel.cs" />
     <Compile Include="ViewModel\PlayerPickerControlViewModel.cs" />
     <Compile Include="ViewModel\SignInControlViewModel.cs" />
@@ -194,10 +196,6 @@
     <Resource Include="Media\global_offensive.png" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="Controls\CharactersStatusControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Controls\GameControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -227,7 +225,9 @@
   <ItemGroup>
     <Resource Include="Media\back.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Media\Maps\RGASM.jpg" />
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="Media\Counter-Strike-Condition-Zero.png" />
     <Resource Include="Media\Counter-Strike-Deleted-Scenes.png" />
@@ -248,6 +248,12 @@
     <Resource Include="Media\Maps\de_aztec.jpeg" />
     <Resource Include="Media\Maps\de_dust2.jpg" />
     <Resource Include="Media\Maps\de_inferno.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CounterStrikeLibrary\CounterStrikeLibrary.csproj">
+      <Project>{e8ad74d4-eebb-4bf5-b3b1-8d7ed3f6b248}</Project>
+      <Name>CounterStrikeLibrary</Name>
+    </ProjectReference>
   </ItemGroup>
   <!--=======
 >>>>>>> 74a37c8c24e70c6c926ebf2e36258519e7965171-->

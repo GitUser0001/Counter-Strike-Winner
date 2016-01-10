@@ -7,19 +7,32 @@ using CounterStrike.Infrastructure;
 using CounterStrike.Model;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
+using CounterStrikeLibrary;
+using System.Windows.Media;
 
 namespace CounterStrike.ViewModel
 {
     public class MapPickerControlViewModel : ViewModelBase
     {
+        private Map _map;
+
         private RelayCommand _confirmMapCommand;
         private RelayCommand _selectMap1Command;
         private RelayCommand _selectMap2Command;
         private RelayCommand _selectMap3Command;
 
-        private string _mapStatus = "Confirm";
-        private bool _isNotConfirmed = true;
-        private string _mapImagePath;
+        public Map Map
+        {
+            get
+            {
+                return _map;
+            }
+            set
+            {
+                _map = value;
+                OnPropertyChanged("Map");
+            }
+        }
 
         public ICommand ConfirmMap
         {
@@ -61,56 +74,15 @@ namespace CounterStrike.ViewModel
             }
         }
 
-        public string MapImagePath
-        {
-            get
-            {
-                return _mapImagePath;
-            }
-            set
-            {
-                _mapImagePath = value;
-                OnPropertyChanged("MapImagePath");
-            }
-        }
-
-        public string MapStatus
-        {
-            get
-            {
-                return _mapStatus;
-            }
-            set
-            {
-                _mapStatus = value;
-                OnPropertyChanged("MapStatus");
-            }
-        }
-
-        public bool IsNotConfirmed
-        {
-            get
-            {
-                return _isNotConfirmed;
-            }
-            set
-            {
-                _isNotConfirmed = value;
-                OnPropertyChanged("IsConfirmed");
-            }
-        }
-
         #region Confirm Map Command
         public bool CanExecuteConfirmMapCommand(object parameter)
         {
-            return Map.ImageMap != null;
+            return Map != null;
         }
 
         public void ExecuteConfirmMapCommand(object parameter)
         {
-            MapStatus = "Conformed";
-            IsNotConfirmed = false;
-            EnvelopeWindowManager.SwitchToGameView();
+            GameSettings.SetMap(Map);
         }
         #endregion
 
@@ -122,8 +94,7 @@ namespace CounterStrike.ViewModel
 
         public void ExecuteSelectMap1Command(object parameter)
         {
-            Map.LoadMap1();
-            MapImagePath = Map.ImageMap;
+            Map = new Map(MapType.DeDust);
         }
         #endregion
 
@@ -135,8 +106,7 @@ namespace CounterStrike.ViewModel
 
         public void ExecuteSelectMap2Command(object parameter)
         {
-            Map.LoadMap2();
-            MapImagePath = Map.ImageMap;
+            Map = new Map(MapType.DeRain);
         }
         #endregion
 
@@ -148,8 +118,7 @@ namespace CounterStrike.ViewModel
 
         public void ExecuteSelectMap3Command(object parameter)
         {
-            Map.LoadMap3();
-            MapImagePath = Map.ImageMap;
+            Map = new Map(MapType.DeWinter);
         }
         #endregion
     }

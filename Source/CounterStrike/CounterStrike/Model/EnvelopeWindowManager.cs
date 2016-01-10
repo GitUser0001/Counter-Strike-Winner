@@ -1,5 +1,6 @@
 ﻿using CounterStrike.Controls;
 using CounterStrike.ViewModel;
+using CounterStrikeLibrary;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,7 +18,6 @@ namespace CounterStrike.Model
         private static PlayerPickerControl _playerTwoPickerControl;
         private static MapPickerControl _mapPickerControl;
         private static GameControl _gameControl;
-        private static CharactersStatusControl _charactersStatusControl;
 
         private static SignInControl SignInControl
         {
@@ -104,23 +104,6 @@ namespace CounterStrike.Model
             }
         }
 
-        private static CharactersStatusControl CharactersStatusControl
-        {
-            get
-            {
-                if (_charactersStatusControl == null)
-                {
-                    _charactersStatusControl = new CharactersStatusControl();
-                }
-
-                return _charactersStatusControl;
-            }
-            set
-            {
-                _charactersStatusControl = value;
-            }
-        }
-
         public static void SetEnvelopeWindow(EnvelopeWindowViewModel mainWindow)
         {
             _mainWindow = mainWindow;
@@ -137,19 +120,19 @@ namespace CounterStrike.Model
             }));
         }
 
-        public static void SwitchToPlayerPickerMenu(bool isOnePlayer)
+        public static void SwitchToPlayerPickerMenu(GameType gameType)
         {
             CheckWindowReference();
             ClearWindow();
 
-            GameSettings.IsSinglePlayer = isOnePlayer;
+            GameSettings.GameType = gameType;
 
             Application.Current.Dispatcher.BeginInvoke(new Action(() =>
             {
                 _mainWindow.MiddleView = PlayerOnePickerControl;
             }));
 
-            if (!isOnePlayer)
+            if (gameType == GameType.MultiGame)
             {
                 Application.Current.Dispatcher.BeginInvoke(new Action(() =>
                 {
@@ -176,8 +159,7 @@ namespace CounterStrike.Model
 
             Application.Current.Dispatcher.BeginInvoke(new Action(() =>
             {
-                _mainWindow.GameView = MapPickerControl;
-                _mainWindow.StatusBar = CharactersStatusControl;
+                _mainWindow.GameView = GameControl;
             }));
         }
 

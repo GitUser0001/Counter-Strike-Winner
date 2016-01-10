@@ -36,7 +36,8 @@
         		Text="Nickname" Foreground="#FFDE9731" Margin="10,19,0,0"
         		FontSize="18" FontWeight="Medium" VerticalAlignment="Top"  Grid.Row="1" Height="24"/>
 
-            <TextBox HorizontalAlignment="Left" Margin="115,19,0,0" Grid.Row="1" FontSize="16"
+            <TextBox Text="{Binding Path=NickName, UpdateSourceTrigger=PropertyChanged}" 
+                     HorizontalAlignment="Left" Margin="115,19,0,0" Grid.Row="1" FontSize="16"
                      TextWrapping="Wrap" Tag="NickName" Style="{StaticResource placeHolder}"
                      VerticalAlignment="Top" Width="171"/>
 
@@ -85,7 +86,7 @@
             <Button Command="{Binding ConfirmPlayer}" FontWeight="Medium"
                     Grid.Row="5" HorizontalAlignment="Right" 
                     Margin="0,5,24,5" Padding="10,5,10,5"
-                    Style="{StaticResource MetroButton}" Width="85">
+                    Style="{StaticResource MetroButton}" Width="95">
                 <Button.Content>
                     <TextBlock Text="{Binding PlayerStatus, UpdateSourceTrigger=PropertyChanged}"/>
                 </Button.Content>

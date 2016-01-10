@@ -1,5 +1,6 @@
 ﻿using CounterStrike.Infrastructure;
 using CounterStrike.Model;
+using CounterStrikeLibrary;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -48,7 +49,7 @@ namespace CounterStrike.ViewModel
 
         public void ExecuteSelectSingleModCommand(object parameter)
         {
-            EnvelopeWindowManager.SwitchToPlayerPickerMenu(true);
+            EnvelopeWindowManager.SwitchToPlayerPickerMenu(GameType.SingleGame);
         }
 
         public bool CanExecuteSelectSingleModCommand(object parameter)
@@ -58,7 +59,7 @@ namespace CounterStrike.ViewModel
 
         public void ExecuteSelectMultyModCommand(object parameter)
         {
-            EnvelopeWindowManager.SwitchToPlayerPickerMenu(false);
+            EnvelopeWindowManager.SwitchToPlayerPickerMenu(GameType.MultiGame);
         }
 
         public bool CanExecuteSelectMultyModCommand(object parameter)

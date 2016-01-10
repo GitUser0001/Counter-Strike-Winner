@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CounterStrikeLibrary;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,21 +10,45 @@ namespace CounterStrike.Model
 {
     public static class GameSettings
     {
-        private static bool _isSinglePlayer;
+        private static GameType _gameType;
         private static Player _playerOne;
         private static Player _playerTwo;
         private static Map _map;
 
-        public static bool IsSinglePlayer
+        public static GameType GameType
         {
             get
             {
-                return _isSinglePlayer;
+                return _gameType;
             }
             set
             {
                 ClearSettings();
-                _isSinglePlayer = value;
+                _gameType = value;
+            }
+        }
+
+        public static Player PlayerOne
+        {
+            get
+            {
+                return _playerOne;
+            }
+        }
+
+        public static Player PlayerTwo
+        {
+            get
+            {
+                return _playerTwo;
+            }
+        }
+
+        public static Map Map
+        {
+            get
+            {
+                return _map;
             }
         }
 
@@ -38,10 +63,16 @@ namespace CounterStrike.Model
                 _playerTwo = player;
             }
 
-            if (_isSinglePlayer || _playerTwo != null)
+            if (_gameType == GameType.SingleGame || _playerTwo != null)
             {
                 EnvelopeWindowManager.SwitchToMapPickerMenu();
             }
+        }
+
+        public static void SetMap(Map map)
+        {
+            _map = map;
+            EnvelopeWindowManager.SwitchToGameView();
         }
 
         private static void ClearSettings()
