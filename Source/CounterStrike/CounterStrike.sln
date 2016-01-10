@@ -9,11 +9,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CounterStrike", "CounterStr
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CounterStrikeLibrary", "CounterStrikeLibrary\CounterStrikeLibrary.csproj", "{E8AD74D4-EEBB-4BF5-B3B1-8D7ED3F6B248}"
-	ProjectSection(ProjectDependencies) = postProject
-		{C1F0BB6D-9B28-4488-BB3D-6317DAA12F25} = {C1F0BB6D-9B28-4488-BB3D-6317DAA12F25}
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CounterStrikeTest", "CounterStrikeTest\CounterStrikeTest.csproj", "{C1F0BB6D-9B28-4488-BB3D-6317DAA12F25}"
+	ProjectSection(ProjectDependencies) = postProject
+		{E8AD74D4-EEBB-4BF5-B3B1-8D7ED3F6B248} = {E8AD74D4-EEBB-4BF5-B3B1-8D7ED3F6B248}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

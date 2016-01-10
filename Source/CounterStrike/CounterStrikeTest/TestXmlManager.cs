@@ -9,7 +9,7 @@ namespace CounterStrikeTest
     [TestClass]
     public class TestXmlManager
     {
-        [TestMethod]
+        [TestMethod, TestCategory("XMLmanager")]
         public void TestSerializeGamer()
         {
             Gamer g1 = new Gamer("Pasha", PlayerType.ADMIN, new Color());
@@ -29,7 +29,7 @@ namespace CounterStrikeTest
             manager.SerializeXml();
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory("XMLmanager")]
         public void TestGetGamer()
         {
             XmlManager manager = new XmlManager();
@@ -39,7 +39,7 @@ namespace CounterStrikeTest
             Assert.IsNotNull(res);
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory("XMLmanager")]
         public void TestSaveGamer()
         {
             Gamer g1 = new Gamer("Pasha", PlayerType.ADMIN, new Color());
@@ -50,7 +50,7 @@ namespace CounterStrikeTest
             manager.Save(g1);
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory("XMLmanager")]
         public void TestSerializeGame()
         {
             Gamer g1 = new Gamer("Pasha", PlayerType.ADMIN, new Color());
@@ -72,7 +72,7 @@ namespace CounterStrikeTest
             manager.SerializeXml();
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory("XMLmanager")]
         public void TestGetGame()
         {
             XmlManager manager = new XmlManager();
@@ -81,7 +81,7 @@ namespace CounterStrikeTest
             Assert.IsNotNull(res);
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory("XMLmanager")]
         public void TestGameDeserialize()
         {
             XmlManager manager = new XmlManager();
@@ -90,7 +90,7 @@ namespace CounterStrikeTest
             Assert.IsNotNull(res);
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory("XMLmanager")]
         public void TestGamerDeserialize()
         {
             XmlManager manager = new XmlManager();
