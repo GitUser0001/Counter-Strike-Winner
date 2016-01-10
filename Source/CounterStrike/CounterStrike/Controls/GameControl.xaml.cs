@@ -10,16 +10,17 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace CounterStrike.View
+namespace CounterStrike.Controls
 {
     /// <summary>
-    /// Interaction logic for GameMainWimdow.xaml
+    /// Interaction logic for GameControl.xaml
     /// </summary>
-    public partial class GameMainWimdow : Window
+    public partial class GameControl : UserControl
     {
-        public GameMainWimdow()
+        public GameControl()
         {
             InitializeComponent();
         }

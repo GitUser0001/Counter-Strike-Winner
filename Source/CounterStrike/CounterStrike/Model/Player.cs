@@ -3,16 +3,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media;
 
 namespace CounterStrike.Model
 {
     public class Player
     {
-        public Player(string firstName, string lastName)
+        public Player(int regionNumber, int weaponNumber, Color color)
         {
-            FirstName = firstName;
-            NickName = lastName;
+            RegionNumber = regionNumber;
+            WeaponNumber = weaponNumber;
+            Color = color;
         }
+
+        public int RegionNumber { get; set; }
+
+        public int WeaponNumber { get; set; }
+
+        public Color Color { get; set; }
 
         public string FirstName { get; set; }
 
