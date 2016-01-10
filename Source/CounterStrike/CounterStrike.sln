@@ -4,8 +4,16 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 12.0.40629.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CounterStrike", "CounterStrike\CounterStrike.csproj", "{A1E11AB3-9D11-41B3-8014-3C2DE592FAF1}"
+	ProjectSection(ProjectDependencies) = postProject
+		{E8AD74D4-EEBB-4BF5-B3B1-8D7ED3F6B248} = {E8AD74D4-EEBB-4BF5-B3B1-8D7ED3F6B248}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CounterStrikeLibrary", "CounterStrikeLibrary\CounterStrikeLibrary.csproj", "{E8AD74D4-EEBB-4BF5-B3B1-8D7ED3F6B248}"
+	ProjectSection(ProjectDependencies) = postProject
+		{C1F0BB6D-9B28-4488-BB3D-6317DAA12F25} = {C1F0BB6D-9B28-4488-BB3D-6317DAA12F25}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CounterStrikeTest", "CounterStrikeTest\CounterStrikeTest.csproj", "{C1F0BB6D-9B28-4488-BB3D-6317DAA12F25}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +29,10 @@ Global
 		{E8AD74D4-EEBB-4BF5-B3B1-8D7ED3F6B248}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E8AD74D4-EEBB-4BF5-B3B1-8D7ED3F6B248}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E8AD74D4-EEBB-4BF5-B3B1-8D7ED3F6B248}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C1F0BB6D-9B28-4488-BB3D-6317DAA12F25}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C1F0BB6D-9B28-4488-BB3D-6317DAA12F25}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C1F0BB6D-9B28-4488-BB3D-6317DAA12F25}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C1F0BB6D-9B28-4488-BB3D-6317DAA12F25}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
