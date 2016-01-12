@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using CounterStrike.GameLogic;
 
 namespace CounterStrike.Model
 {
@@ -35,6 +36,8 @@ namespace CounterStrike.Model
             }
         }
 
+        public Coordinate CoordinatePlayer { get; set; }
+
         public string NickName { get; set; }
 
         public PlayerType RegionType { get; set; }
@@ -43,7 +46,7 @@ namespace CounterStrike.Model
 
         public ImageBrush Color { get; set; }
 
-        public ushort Health { get; set; }
+        public int Health { get; set; }
 
         public override string ToString()
         {
