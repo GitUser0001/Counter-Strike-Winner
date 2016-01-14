@@ -37,9 +37,9 @@ namespace CounterStrike.Model
                     break;
             }
 
-            //backgroundImage = new BitmapImage(imageSource);
-            imageSource = new Uri(_pathToMap4);
             backgroundImage = new BitmapImage(imageSource);
+            //imageSource = new Uri(_pathToMap4);
+            //backgroundImage = new BitmapImage(imageSource);
             return backgroundImage;
         }
     }
