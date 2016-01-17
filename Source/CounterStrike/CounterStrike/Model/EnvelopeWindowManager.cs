@@ -127,15 +127,18 @@ namespace CounterStrike.Model
 
             GameSettings.GameType = gameType;
 
-            Application.Current.Dispatcher.BeginInvoke(new Action(() =>
-            {
-                _mainWindow.MiddleView = PlayerOnePickerControl;
-            }));
-
-            if (gameType == GameType.MultiGame)
+            if (gameType == GameType.SingleGame)
             {
                 Application.Current.Dispatcher.BeginInvoke(new Action(() =>
                 {
+                    _mainWindow.MiddleView = PlayerOnePickerControl;
+                }));
+            }
+            else
+            {
+                Application.Current.Dispatcher.BeginInvoke(new Action(() =>
+                {
+                    _mainWindow.LeftView  = PlayerOnePickerControl;
                     _mainWindow.RightView = PlayerTwoPickerControl;
                 }));
             }
