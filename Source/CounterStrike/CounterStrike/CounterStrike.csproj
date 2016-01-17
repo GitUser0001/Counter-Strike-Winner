@@ -110,6 +110,9 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Controls\GameCanvas.xaml.cs">
+      <DependentUpon>GameCanvas.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\GameControl.xaml.cs">
       <DependentUpon>GameControl.xaml</DependentUpon>
     </Compile>
@@ -122,6 +125,9 @@
     <Compile Include="Controls\SignInControl.xaml.cs">
       <DependentUpon>SignInControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="GameLogic\Coordinate.cs" />
+    <Compile Include="GameLogic\GameMapBuilder.cs" />
+    <Compile Include="GameLogic\MapBuilder.cs" />
     <Compile Include="Infrastructure\RelayCommands.cs" />
     <Compile Include="Model\CounterTeroristMechanics.cs" />
     <Compile Include="Model\EnvelopeWindowManager.cs" />
@@ -139,6 +145,9 @@
     <Compile Include="ViewModel\ViewModelBase.cs" />
     <Compile Include="View\EnvelopeWindow.xaml.cs">
       <DependentUpon>EnvelopeWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\TestGameCanvasWindow.xaml.cs">
+      <DependentUpon>TestGameCanvasWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\TestMainWindow.xaml.cs">
       <DependentUpon>TestMainWindow.xaml</DependentUpon>
@@ -196,6 +205,10 @@
     <Resource Include="Media\global_offensive.png" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Controls\GameCanvas.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\GameControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -213,6 +226,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\EnvelopeWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\TestGameCanvasWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
