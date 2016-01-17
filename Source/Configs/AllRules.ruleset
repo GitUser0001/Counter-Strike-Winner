@@ -48,7 +48,7 @@
     <Rule Id="CA1048" Action="Error" />
     <Rule Id="CA1049" Action="Error" />
     <Rule Id="CA1050" Action="Error" />
-    <Rule Id="CA1051" Action="Error" />
+    <Rule Id="CA1051" Action="None" />
     <Rule Id="CA1052" Action="Error" />
     <Rule Id="CA1054" Action="Error" />
     <Rule Id="CA1055" Action="Error" />
@@ -126,10 +126,11 @@
     <Rule Id="CA1806" Action="Error" />
     <Rule Id="CA1809" Action="Error" />
     <Rule Id="CA1810" Action="Error" />
+    <Rule Id="CA1811" Action="None" />
     <Rule Id="CA1812" Action="Error" />
     <Rule Id="CA1813" Action="Error" />
     <Rule Id="CA1814" Action="Error" />
-    <Rule Id="CA1815" Action="Error" />
+    <Rule Id="CA1815" Action="None" />
     <Rule Id="CA1816" Action="Error" />
     <Rule Id="CA1819" Action="Error" />
     <Rule Id="CA1820" Action="Error" />

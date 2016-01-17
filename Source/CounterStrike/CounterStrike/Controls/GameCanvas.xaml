@@ -1,0 +1,25 @@
+﻿<Canvas x:Class="CounterStrike.Controls.GameCanvas"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" >
+</Canvas>
+
+<!--<Page xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <ItemsControl>
+        <ItemsControl.ItemsPanel>
+            <ItemsPanelTemplate>
+                <Canvas/>
+            </ItemsPanelTemplate>
+        </ItemsControl.ItemsPanel>
+        <Rectangle Width="60" Height="60" Fill="Green" Canvas.Left="20" Canvas.Top="20"/>
+        <Rectangle Width="60" Height="60" Fill="Red" Canvas.Left="40" Canvas.Top="40"/>
+    </ItemsControl>
+</Page>-->
+
+<!--<Canvas xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+        xmlns:Core="http://schemas.microsoft.com/winfx/2006/xaml" 
+        xmlns:Namespace="clr-namespace:MyNamepace" 
+        xmlns:Properties="clr-namespace:MyNamepace.Properties" 
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" 
+        Core:Class="MyNamepace.MyCanvas" d:DesignWidth="93.6" d:DesignHeight="80.8"/>-->

@@ -15,7 +15,7 @@ namespace CounterStrikeLibrary
         private string _pathToDirectory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), ".CounterStrike");
         private string _fileNameGame = "Game.xml";
         private string _fileNameGamer = "Gamer.xml";
-        
+
         private List<Game> _games = new List<Game>();
         private List<Gamer> _gamers = new List<Gamer>();
 
@@ -27,7 +27,7 @@ namespace CounterStrikeLibrary
         }
 
         /// <summary>
-        /// Serialize GAME class to XML file 
+        /// Serialize GAME class to XML file
         /// </summary>
         /// <param name="game"></param>
         public XmlManager(Game game)
@@ -36,7 +36,7 @@ namespace CounterStrikeLibrary
         }
 
         /// <summary>
-        /// Serialize GAME class to XML file 
+        /// Serialize GAME class to XML file
         /// </summary>
         /// <param name="game"></param>
         public XmlManager(List<Game> game)
@@ -46,7 +46,7 @@ namespace CounterStrikeLibrary
         }
 
         /// <summary>
-        /// Serialize GAMER class to XML file 
+        /// Serialize GAMER class to XML file
         /// </summary>
         /// <param name="gamer"></param>
         public XmlManager(Gamer gamer)
@@ -55,7 +55,7 @@ namespace CounterStrikeLibrary
         }
 
         /// <summary>
-        /// Serialize GAMER class to XML file 
+        /// Serialize GAMER class to XML file
         /// </summary>
         /// <param name="gamer"></param>
         public XmlManager(List<Gamer> gamerList)
@@ -222,7 +222,7 @@ namespace CounterStrikeLibrary
                         game.TypeGame = (GameType)Enum.Parse(typeof(GameType), item["TypeGame"].InnerText);
 
                         //// Parse XML file by hierarchy
-                        //// Get the type of game and parsing GAMERS of GAME 
+                        //// Get the type of game and parsing GAMERS of GAME
                         //// Single game => Gamer1
                         //// Multi game => Gamer1 and Gamer2
                         if(game.TypeGame == GameType.SingleGame)

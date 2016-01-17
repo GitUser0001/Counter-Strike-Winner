@@ -9,6 +9,7 @@ namespace CounterStrike.ViewModel
 {
     public class GameControlViewModel : ViewModelBase
     {
+        // Can make this properties static ?????????????
         public Player PlayerOne
         {
             get
