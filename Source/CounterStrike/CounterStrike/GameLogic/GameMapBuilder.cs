@@ -28,7 +28,6 @@ namespace CounterStrike.GameLogic
             //// NOT HAVE IMPLEMENTATION
             this.map.PlayerOne.CoordinatePlayer = new Coordinate(10, 10);
             this.map.PlayerTwo.CoordinatePlayer = new Coordinate(230, 230);
-
         }
 
         public override void BuildBlocks()

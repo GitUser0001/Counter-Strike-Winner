@@ -18,7 +18,7 @@ namespace CounterStrike.GameLogic
         }
 
         /// <summary>
-        /// The coordinate on canvas is LEFT 
+        /// The coordinate on canvas is LEFT
         /// </summary>
         public float X
         {

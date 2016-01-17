@@ -6,7 +6,6 @@
         Title="TestGameCanvasWindow" Height="337.2" Width="412">
     <Grid x:Name="gridMain">
         <Canvas x:Name="mainCanvas"/>
-
         <Controls:GameCanvas Height="200" Width="300" Background="#FFC9F7C9"/>
     </Grid>
 </Window>

@@ -21,10 +21,21 @@ namespace CounterStrike.Controls
     /// </summary>
     public partial class GameCanvas : Canvas
     {
+        // Using a DependencyProperty as the backing store for MyProperty.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty PlayerOneProperty =
+            DependencyProperty.Register(
+                                        "PlayerOneProperty",
+                                        typeof(Player),
+                                        typeof(GameCanvas),
+                                        new UIPropertyMetadata(
+                                          GameSettings.PlayerOne,
+                                          OnCurrentPlayerOnePropertyChanged,
+                                          OnCoercePlayerProperty),
+                                          OnValidatePlayerOneProperty);
+
         public GameCanvas()
         {
         }
-
 
         public Player PlayerOne
         {
@@ -32,20 +43,37 @@ namespace CounterStrike.Controls
             set { SetValue(PlayerOneProperty, value); }
         }
 
-        // Using a DependencyProperty as the backing store for MyProperty.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty PlayerOneProperty =
-            DependencyProperty.Register("MyProperty", typeof(Player), typeof(GameCanvas), 
-            new FrameworkPropertyMetadata(GameSettings.PlayerOne));
-
         private static void OnCurrentPlayerOnePropertyChanged(DependencyObject source, DependencyPropertyChangedEventArgs e)
         {
             Player p = new Player("P", CounterStrikeLibrary.PlayerType.ADMIN, 10, Color.FromArgb(0, 0, 0, 0));
             p.CoordinatePlayer = new GameLogic.Coordinate(230, 230);
 
-            GameCanvas canvas = source as GameCanvas;
+            //GameCanvas canvas = source as GameCanvas;
             p = (Player)e.NewValue;
         }
 
-        
+        /// <summary>
+        /// Method to avoid exception
+        /// If Player postion coordinates will be over than MAP coordinate
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="data"></param>
+        /// <returns></returns>
+        private static object OnCoercePlayerProperty(DependencyObject sender, object data)
+        {
+            if(GameSettings.Map.Height < 500 && GameSettings.Map.Width < 500)
+            {
+                data = GameSettings.PlayerOne;
+            }
+            return data;
+        }
+
+        private static bool OnValidatePlayerOneProperty(object data)
+        {
+            if (data.GetType() == typeof(Player))
+                return true;
+            else
+                return false;
+        }
     }
 }
