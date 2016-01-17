@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:VM="clr-namespace:CounterStrike.ViewModel">
+             xmlns:VM="clr-namespace:CounterStrike.ViewModel"
+             xmlns:UIElements="clr-namespace:CounterStrike.UIElements">
 
     <UserControl.DataContext>
         <VM:GameControlViewModel></VM:GameControlViewModel>
@@ -15,8 +16,8 @@
             <RowDefinition Height="60"/>
         </Grid.RowDefinitions>
 
-        <Canvas Background="{Binding Path=Map.BackgroundImage, UpdateSourceTrigger=PropertyChanged}">            
-        </Canvas>
+        <UIElements:GameCanvas Background="{Binding Path=Map.BackgroundImage, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource GameCanvasStyle}">            
+        </UIElements:GameCanvas>
 
 
         <!--============================== Player One ================================-->
