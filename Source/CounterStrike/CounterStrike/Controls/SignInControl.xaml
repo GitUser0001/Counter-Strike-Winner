@@ -66,7 +66,7 @@
                     </StackPanel>
                 </Button>
 
-                <Button Command="{Binding LogOff}"
+                <Button Command="{Binding Logout}"
                     Margin="110,10,0,0" VerticalAlignment="Top" 
                 	FontWeight="Medium" Style="{StaticResource MetroButton}" 
                         Height="40" HorizontalAlignment="Left" Width="128">

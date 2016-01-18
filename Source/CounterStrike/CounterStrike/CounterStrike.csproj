@@ -132,9 +132,6 @@
     <Compile Include="Model\Player.cs" />
     <Compile Include="Model\TeroristMechanics.cs" />
     <Compile Include="UIElements\GameCanvas.cs" />
-    <Compile Include="UIElements\Window1.xaml.cs">
-      <DependentUpon>Window1.xaml</DependentUpon>
-    </Compile>
     <Compile Include="ViewModel\EnvelopeWindowViewModel.cs" />
     <Compile Include="ViewModel\GameControlViewModel.cs" />
     <Compile Include="ViewModel\MapPickerControlViewModel.cs" />
@@ -213,14 +210,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\SignInControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UIElements\GameResourses.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UIElements\Window1.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
