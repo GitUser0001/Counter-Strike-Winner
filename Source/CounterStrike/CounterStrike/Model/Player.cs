@@ -14,7 +14,8 @@ namespace CounterStrike.Model
     public class Player
     {
         private ImageBrush _avatar;
-        private Point _point;
+        private Point _pointNew;
+        private Point _pointOld;
         private double _step;
 
         public Player(string nickName, PlayerType regionType, int weaponNumber, Color color)
@@ -37,19 +38,35 @@ namespace CounterStrike.Model
             }
         }
 
-        public Point Point
+        public Point PointNew
         {
             get
             {
-                if (_point == null)
+                if (_pointNew == null)
                 {
-                    _point = new Point(0,0);
+                    _pointNew = new Point(1, 1);
                 }
-                return _point;
+                return _pointNew;
             }
             private set
             {
-                _point = value;
+                _pointNew = value;
+            }
+        }
+
+        public Point PointOld
+        {
+            get
+            {
+                if (_pointOld == null)
+                {
+                    _pointOld = new Point(0, 0);
+                }
+                return _pointOld;
+            }
+            private set
+            {
+                _pointOld = value;
             }
         }
 
@@ -63,21 +80,30 @@ namespace CounterStrike.Model
 
         public ushort Health { get; set; }
 
+        public void RevertPosition()
+        {
+            _pointNew.X = PointOld.X;
+            _pointNew.Y = PointOld.Y;
+        }
+
         public void ChangePosition(Direction direction)
         {
+            _pointOld.X = PointNew.X;
+            _pointOld.Y = PointNew.Y;
+
             switch (direction)
             {
                 case Direction.Up:
-                    _point.Y -= _step;
+                    _pointNew.Y -= _step;
                     break;
                 case Direction.Down:
-                    _point.Y += _step;
+                    _pointNew.Y += _step;
                     break;
                 case Direction.Left:
-                    _point.X -= _step;
+                    _pointNew.X -= _step;
                     break;
                 case Direction.Right:
-                    _point.X += _step;
+                    _pointNew.X += _step;
                     break;
                 case Direction.Up_Left:
                     break;

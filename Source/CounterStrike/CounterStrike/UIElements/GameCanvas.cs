@@ -52,22 +52,50 @@ namespace CounterStrike.UIElements
         // 1
         static object CoerceValueCallbackMethodPlayerOne(DependencyObject d, object baseValue)
         {
-            var a = (GameCanvas)d;
+            var gameCanvas = (GameCanvas)d;
 
-            a._playerOne.Fill = a.PlayerOne.Avatar;
+            gameCanvas._playerOne.Fill = gameCanvas.PlayerOne.Avatar;
 
-            //if (IsLegalMove(a.PlayerOne.Point.X, a.PlayerOne.Point.Y))
-            //{
-                Canvas.SetLeft(a._playerOne, a.PlayerOne.Point.X);
-                Canvas.SetTop(a._playerOne, a.PlayerOne.Point.Y);
-            //}
+            if (IsLegalMove(true, gameCanvas))
+            {
+                Canvas.SetLeft(gameCanvas._playerOne, gameCanvas.PlayerOne.PointNew.X);
+                Canvas.SetTop(gameCanvas._playerOne, gameCanvas.PlayerOne.PointNew.Y);
+            }
+            else
+            {
+                gameCanvas.PlayerOne.RevertPosition();
+            }
 
             return baseValue;
         }
 
-        private static bool IsLegalMove(double p1, double p2)
+        private static bool IsLegalMove(bool IsPlayerOne, GameCanvas gameCanvas)
         {
-            if (p1 >= 0 && p2 >= 0)
+            Rectangle playerRectangle;
+            Player player;
+
+            if (IsPlayerOne)
+            {
+                player = gameCanvas.PlayerOne;
+                playerRectangle = gameCanvas._playerOne;
+            }
+            else
+            {
+                player = gameCanvas.PlayerTwo;
+                playerRectangle = gameCanvas._playerTwo;
+            }
+
+            double X = player.PointNew.X;
+            double Y = player.PointNew.Y;
+            double Width = gameCanvas.ActualWidth - 30;
+            double Height = gameCanvas.ActualHeight - 33;
+
+            Rect playerRect = new Rect(player.PointNew.X,
+                                        player.PointNew.Y,
+                                        playerRectangle.Width,
+                                        playerRectangle.Height);
+
+            if (X >= 0 && Y >= 0 && X <= Width && Y <= Height && !gameCanvas._wallsCoordinates.Any(x => x.IntersectsWith(playerRect)))
             {
                 return true;
             }
@@ -83,10 +111,7 @@ namespace CounterStrike.UIElements
         // 3
         static void ChangedCallbackMethodPlayerOne(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            var a = (GameCanvas)d;
-            a._playerOne.Fill = a.PlayerOne.Avatar;
-            Canvas.SetLeft(a._playerOne, (e.NewValue as Player).Point.X);
-            Canvas.SetTop(a._playerOne, a.PlayerOne.Point.Y);
+
         }
         //------------------------------------------------------------------------
         //-------------------  Player TWO  --------------------------------------
@@ -119,15 +144,19 @@ namespace CounterStrike.UIElements
         // 1
         static object CoerceValueCallbackMethodPlayerTwo(DependencyObject d, object baseValue)
         {
-            var a = (GameCanvas)d;
+            var gameCanvas = (GameCanvas)d;
 
-            a._playerTwo.Fill = a.PlayerTwo.Avatar;
+            gameCanvas._playerTwo.Fill = gameCanvas.PlayerTwo.Avatar;
 
-            //if (IsLegalMove(a.PlayerOne.Point.X, a.PlayerOne.Point.Y))
-            //{
-            Canvas.SetLeft(a._playerTwo, a.PlayerTwo.Point.X);
-            Canvas.SetTop(a._playerTwo, a.PlayerTwo.Point.Y);
-            //}
+            if (IsLegalMove(false, gameCanvas))
+            {
+                Canvas.SetLeft(gameCanvas._playerTwo, gameCanvas.PlayerTwo.PointNew.X);
+                Canvas.SetTop(gameCanvas._playerTwo, gameCanvas.PlayerTwo.PointNew.Y);
+            }
+            else
+            {
+                gameCanvas.PlayerTwo.RevertPosition();
+            }
 
             return baseValue;
         }
@@ -141,17 +170,17 @@ namespace CounterStrike.UIElements
         // 3
         static void ChangedCallbackMethodPlayerTwo(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            var a = (GameCanvas)d;
-            a._playerTwo.Fill = a.PlayerTwo.Avatar;
-            Canvas.SetLeft(a._playerTwo, (e.NewValue as Player).Point.X);
-            Canvas.SetTop(a._playerTwo, a.PlayerTwo.Point.Y);
+            //var a = (GameCanvas)d;
+            //a._playerTwo.Fill = a.PlayerTwo.Avatar;
+            //Canvas.SetLeft(a._playerTwo, (e.NewValue as Player).Point.X);
+            //Canvas.SetTop(a._playerTwo, a.PlayerTwo.Point.Y);
         }
         //------------------------------------------------------------------------
         //------------------------------------------------------------------------
         // ----------------  WALS  -----------------------------------------------
 
         private Collection<Rectangle> _walls = new Collection<Rectangle>();
-
+        IEnumerable<Rect> _wallsCoordinates = new List<Rect>();
         private static FrameworkPropertyMetadata _metadataWalls = new FrameworkPropertyMetadata(
             new PropertyChangedCallback(ChangedCallbackMethodWalls), new CoerceValueCallback(CoerceValueCallbackMethodWalls));
 
@@ -191,6 +220,11 @@ namespace CounterStrike.UIElements
             catch (Exception)
             {
             }
+
+            a._wallsCoordinates = a.Walls.Select(r => new Rect(Canvas.GetLeft(r.Recangle),
+                                                                Canvas.GetTop(r.Recangle),
+                                                                r.Recangle.Width,
+                                                                r.Recangle.Height));
 
             return baseValue;
         }
