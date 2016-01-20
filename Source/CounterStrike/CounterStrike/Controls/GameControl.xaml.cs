@@ -23,6 +23,8 @@ namespace CounterStrike.Controls
         public GameControl()
         {
             InitializeComponent();
+            Focusable = true;
+            Loaded += (s, e) => Keyboard.Focus(this);
         }
     }
 }
