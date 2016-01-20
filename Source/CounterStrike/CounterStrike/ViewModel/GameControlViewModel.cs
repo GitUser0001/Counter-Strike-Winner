@@ -60,6 +60,11 @@ namespace CounterStrike.ViewModel
                 if (_playerTwo == null)
                 {
                     _playerTwo = GameSettings.PlayerTwo;
+
+                    if (_playerTwo == null)
+                    {
+                        _playerTwo = new Player("",PlayerType.Empty,0, System.Windows.Media.Colors.White);
+                    }
                 }
                 return _playerTwo;
             }

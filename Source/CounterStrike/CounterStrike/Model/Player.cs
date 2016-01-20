@@ -152,6 +152,13 @@ namespace CounterStrike.Model
             }
             ImageSource avatarImage = new BitmapImage(imageSource);
             _avatar = new ImageBrush(avatarImage);
+
+            if (regionType == PlayerType.Empty)
+            {
+                _avatar = null;
+                Health = 0;
+                _step = 0;
+            }
         }
 
         private BitmapSource CreateBitmapSource(System.Windows.Media.Color color)
