@@ -11,7 +11,7 @@ namespace CounterStrike.GameLogic
     {
         public GameMapBuilder()
         {
-            this.map = new Map();
+            //this.map = new Map();
         }
 
         public override Map CreateMap()
@@ -26,8 +26,8 @@ namespace CounterStrike.GameLogic
         public override void BuildPlayers()
         {
             //// NOT HAVE IMPLEMENTATION
-            this.map.PlayerOne.CoordinatePlayer = new Coordinate(10, 10);
-            this.map.PlayerTwo.CoordinatePlayer = new Coordinate(230, 230);
+            //this.map.PlayerOne.CoordinatePlayer = new Coordinate(10, 10);
+            //this.map.PlayerTwo.CoordinatePlayer = new Coordinate(230, 230);
         }
 
         public override void BuildBlocks()

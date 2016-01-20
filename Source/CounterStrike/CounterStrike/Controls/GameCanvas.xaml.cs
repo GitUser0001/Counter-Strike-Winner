@@ -61,10 +61,10 @@ namespace CounterStrike.Controls
         /// <returns></returns>
         private static object OnCoercePlayerProperty(DependencyObject sender, object data)
         {
-            if(GameSettings.Map.Height < 500 && GameSettings.Map.Width < 500)
-            {
-                data = GameSettings.PlayerOne;
-            }
+            //if(GameSettings.Map.Height < 500 && GameSettings.Map.Width < 500)
+            //{
+            //    data = GameSettings.PlayerOne;
+            //}
             return data;
         }
 
