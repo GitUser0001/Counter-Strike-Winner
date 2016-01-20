@@ -3,6 +3,7 @@ using CounterStrike.Model;
 using CounterStrikeLibrary;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
@@ -27,13 +28,18 @@ namespace CounterStrike.ViewModel
         private RelayCommand _movePlayerOneLeftCommand;
         private RelayCommand _movePlayerOneRightCommand;
 
+        private RelayCommand _shootPlayerOneCommand;
+
         private RelayCommand _movePlayerTwoUpCommand;
         private RelayCommand _movePlayerTwoDownCommand;
         private RelayCommand _movePlayerTwoLeftCommand;
         private RelayCommand _movePlayerTwoRightCommand;
 
+        private RelayCommand _shootPlayerTwoCommand;
+
         private Player _playerOne;
         private Player _playerTwo;
+        private ObservableCollection<BulletItem> _bulletsList;
         private Map _map;
 
         public Player PlayerOne
@@ -75,6 +81,23 @@ namespace CounterStrike.ViewModel
             }
         }
 
+        public ObservableCollection<BulletItem> BulletsList
+        {
+            get
+            {
+                if (_bulletsList == null)
+                {
+                    _bulletsList = new ObservableCollection<BulletItem>();
+                }
+                return _bulletsList;
+            }
+            set
+            {
+                _bulletsList = value;
+                OnPropertyChanged("BulletsList");
+            }
+        }
+
         public Map Map
         {
             get
@@ -100,6 +123,53 @@ namespace CounterStrike.ViewModel
                 _playerTwo = new Player("Даня", PlayerType.CounterTerrorist, 0, System.Windows.Media.Colors.DarkGray);
             }
         }
+
+        //------------------SHOOT Player ONE----------------
+
+        public ICommand ShootPlayerOne
+        {
+            get
+            {
+                if (_shootPlayerOneCommand == null)
+                    _shootPlayerOneCommand = new RelayCommand(ExecuteShootPlayerOneCommand, CanExecuteShootPlayerOneCommand);
+                return _shootPlayerOneCommand;
+            }
+        }
+
+        public void ExecuteShootPlayerOneCommand(object parameter)
+        {
+            _bulletsList.Add(new BulletItem(PlayerOne.PointNew, PlayerOne.CurrentDirection, PlayerOne.NickName));
+            OnPropertyChanged("BulletsList");
+        }
+
+        public bool CanExecuteShootPlayerOneCommand(object parameter)
+        {
+            return true;
+        }
+
+        //------------------ SHOOT PLAYER TWO
+
+        public ICommand ShootPlayerTwo
+        {
+            get
+            {
+                if (_shootPlayerTwoCommand == null)
+                    _shootPlayerTwoCommand = new RelayCommand(ExecuteShootPlayerTwoCommand, CanExecuteShootPlayerTwoCommand);
+                return _shootPlayerTwoCommand;
+            }
+        }
+
+        public void ExecuteShootPlayerTwoCommand(object parameter)
+        {
+            _bulletsList.Add(new BulletItem(PlayerTwo.PointNew, PlayerTwo.CurrentDirection, PlayerTwo.NickName));
+            OnPropertyChanged("BulletsList");
+        }
+
+        public bool CanExecuteShootPlayerTwoCommand(object parameter)
+        {
+            return true;
+        }
+
 
         // --------------------- Player One ------------------
         #region MyRegion

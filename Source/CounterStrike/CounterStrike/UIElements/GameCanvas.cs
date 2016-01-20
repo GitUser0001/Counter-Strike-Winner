@@ -178,7 +178,7 @@ namespace CounterStrike.UIElements
         //------------------------------------------------------------------------
         // ----------------  WALS  -----------------------------------------------
 
-        private Collection<Rectangle> _walls = new Collection<Rectangle>();
+        //private Collection<Rectangle> _walls = new Collection<Rectangle>();
         IEnumerable<Rect> _wallsCoordinates = new List<Rect>();
         private static FrameworkPropertyMetadata _metadataWalls = new FrameworkPropertyMetadata(
             new PropertyChangedCallback(ChangedCallbackMethodWalls), new CoerceValueCallback(CoerceValueCallbackMethodWalls));
@@ -239,6 +239,83 @@ namespace CounterStrike.UIElements
         {
 
         }
+
+        //------------------------------------------------------------------------
+        //------------------------------------------------------------------------
+        // ----------------  Bullet  -----------------------------------------------
+
+
+        //private Collection<Rectangle> _bullets = new Collection<Rectangle>();
+        IEnumerable<Rect> _bulletsCoordinates = new List<Rect>();
+        private static FrameworkPropertyMetadata _metadataBullets = new FrameworkPropertyMetadata(
+            new PropertyChangedCallback(ChangedCallbackMethodBullets), new CoerceValueCallback(CoerceValueCallbackMethodBullets));
+
+        // Свойство зависимостей.
+        public static readonly DependencyProperty BulletsProperty = DependencyProperty.Register("Bullets",
+                                                                           typeof(Collection<BulletItem>),
+                                                                           typeof(GameCanvas),
+                                                                           _metadataBullets,
+                                                                           new ValidateValueCallback(ValidateValueCallbackMethodBullets));
+
+        public Collection<BulletItem> Bullets
+        {
+            get
+            {
+                return (Collection<BulletItem>)GetValue(BulletsProperty);
+            }
+            set
+            {
+                SetValue(BulletsProperty, value);
+            }
+        }
+
+        // 1
+        static object CoerceValueCallbackMethodBullets(DependencyObject d, object baseValue)
+        {
+            var gameCanvas = (GameCanvas)d;
+
+
+            try
+            {
+                foreach (var bullet in gameCanvas.Bullets)
+                {
+                    Canvas.SetTop(bullet.Recangle, bullet.Position.Y);
+                    Canvas.SetLeft(bullet.Recangle, bullet.Position.X);
+
+                    try
+                    {
+                        gameCanvas.Children.Add(bullet.Recangle);
+                    }
+                    catch(Exception)
+                    {
+                        continue;
+                    }
+                }
+
+                gameCanvas._bulletsCoordinates = gameCanvas.Bullets.Select(b => new Rect(Canvas.GetLeft(b.Recangle),
+                                                                                Canvas.GetTop(b.Recangle),
+                                                                                b.Recangle.Width,
+                                                                                b.Recangle.Height));
+            }
+            catch (Exception)
+            {
+            }
+
+            return baseValue;
+        }
+
+        // 2
+        static bool ValidateValueCallbackMethodBullets(object value)
+        {
+            return true;
+        }
+
+        // 3
+        static void ChangedCallbackMethodBullets(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+
+        }
+
 
         ///------------------------------------------------------------------------
         /// -------------------

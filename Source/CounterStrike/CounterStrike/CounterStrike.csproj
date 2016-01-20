@@ -123,6 +123,7 @@
       <DependentUpon>SignInControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\RelayCommands.cs" />
+    <Compile Include="Model\BulletItem.cs" />
     <Compile Include="Model\EnvelopeWindowManager.cs" />
     <Compile Include="Model\GameSettings.cs" />
     <Compile Include="Model\Map.cs" />

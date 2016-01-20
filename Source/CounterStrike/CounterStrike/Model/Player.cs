@@ -19,6 +19,7 @@ namespace CounterStrike.Model
         private Point _pointOld;
         private double _step;
         private Dictionary<Direction, ImageBrush> _directionImagesDictionary;
+        private Direction _currentDirection = Direction.Down;
 
         /// <summary>
         /// Create Empty Заглушку
@@ -53,6 +54,14 @@ namespace CounterStrike.Model
             get
             {
                 return _directionImage;
+            }
+        }
+
+        public Direction CurrentDirection
+        {
+            get
+            {
+                return _currentDirection;
             }
         }
 
@@ -109,6 +118,7 @@ namespace CounterStrike.Model
             _pointOld.X = PointNew.X;
             _pointOld.Y = PointNew.Y;
             _directionImage = _directionImagesDictionary[direction];
+            _currentDirection = direction;
 
             switch (direction)
             {

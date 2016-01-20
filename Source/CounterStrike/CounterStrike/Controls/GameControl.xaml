@@ -16,10 +16,14 @@
         <KeyBinding Command="{Binding MovePlayerOneRight}" Key="D"/>
         <KeyBinding Command="{Binding MovePlayerOneLeft}" Key="A"/>
 
+        <KeyBinding Command="{Binding ShootPlayerOne}" Key="Space"/>
+
         <KeyBinding Command="{Binding MovePlayerTwoUp}" Key="Up"/>
         <KeyBinding Command="{Binding MovePlayerTwoDown}" Key="Down"/>
         <KeyBinding Command="{Binding MovePlayerTwoRight}" Key="Right"/>
         <KeyBinding Command="{Binding MovePlayerTwoLeft}" Key="Left"/>
+
+        <KeyBinding Command="{Binding ShootPlayerTwo}" Key="Enter"/>
     </UserControl.InputBindings>
 
     <Grid>
@@ -31,11 +35,9 @@
         <UIElements:GameCanvas PlayerOne="{Binding Path=PlayerOne, UpdateSourceTrigger=PropertyChanged}" 
                                PlayerTwo="{Binding Path=PlayerTwo, UpdateSourceTrigger=PropertyChanged}"
                                Walls="{Binding Path=Map.WallItems, UpdateSourceTrigger=PropertyChanged}"
+                               Bullets="{Binding Path=BulletsList, UpdateSourceTrigger=PropertyChanged}"
                                Background="{Binding Path=Map.BackgroundImage, UpdateSourceTrigger=PropertyChanged}">
 
-            <!--<Button Canvas.Left="300" Canvas.Top="100" Command="{Binding Move}">
-                asdasd
-            </Button>-->
         </UIElements:GameCanvas>
 
 
