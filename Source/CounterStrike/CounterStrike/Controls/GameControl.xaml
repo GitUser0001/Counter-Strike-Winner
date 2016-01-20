@@ -15,6 +15,11 @@
         <KeyBinding Command="{Binding MovePlayerOneDown}" Key="S"/>
         <KeyBinding Command="{Binding MovePlayerOneRight}" Key="D"/>
         <KeyBinding Command="{Binding MovePlayerOneLeft}" Key="A"/>
+
+        <KeyBinding Command="{Binding MovePlayerTwoUp}" Key="Up"/>
+        <KeyBinding Command="{Binding MovePlayerTwoDown}" Key="Down"/>
+        <KeyBinding Command="{Binding MovePlayerTwoRight}" Key="Right"/>
+        <KeyBinding Command="{Binding MovePlayerTwoLeft}" Key="Left"/>
     </UserControl.InputBindings>
 
     <Grid>
@@ -24,6 +29,8 @@
         </Grid.RowDefinitions>
 
         <UIElements:GameCanvas PlayerOne="{Binding Path=PlayerOne, UpdateSourceTrigger=PropertyChanged}" 
+                               PlayerTwo="{Binding Path=PlayerTwo, UpdateSourceTrigger=PropertyChanged}"
+                               Walls="{Binding Path=Map.WallItems, UpdateSourceTrigger=PropertyChanged}"
                                Background="{Binding Path=Map.BackgroundImage, UpdateSourceTrigger=PropertyChanged}">
 
             <!--<Button Canvas.Left="300" Canvas.Top="100" Command="{Binding Move}">

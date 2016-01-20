@@ -1,6 +1,7 @@
 ﻿using CounterStrike.Model;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
@@ -23,7 +24,7 @@ namespace CounterStrike.UIElements
     public class GameCanvas : Canvas
     {
         //     -------------------------   PLAYERS  ------------------------------------------------
-
+        // ---------------------- PLAYER ONE ---------------------------------
         private Rectangle _playerOne = new Rectangle();
 
         private static FrameworkPropertyMetadata _metadataPlayer = new FrameworkPropertyMetadata(
@@ -87,21 +88,143 @@ namespace CounterStrike.UIElements
             Canvas.SetLeft(a._playerOne, (e.NewValue as Player).Point.X);
             Canvas.SetTop(a._playerOne, a.PlayerOne.Point.Y);
         }
+        //------------------------------------------------------------------------
+        //-------------------  Player TWO  --------------------------------------
 
+
+        private Rectangle _playerTwo = new Rectangle();
+
+        private static FrameworkPropertyMetadata _metadataPlayerTwo = new FrameworkPropertyMetadata(
+    new PropertyChangedCallback(ChangedCallbackMethodPlayerTwo), new CoerceValueCallback(CoerceValueCallbackMethodPlayerTwo));
+
+        // Свойство зависимостей.
+        public static readonly DependencyProperty PlayerTwoProperty = DependencyProperty.Register("PlayerTwo",
+                                                                           typeof(Player),
+                                                                           typeof(GameCanvas),
+                                                                           _metadataPlayerTwo,
+                                                                           new ValidateValueCallback(ValidateValueCallbackMethodPlayerTwo));
+
+        public Player PlayerTwo
+        {
+            get
+            {
+                return (Player)GetValue(PlayerTwoProperty);
+            }
+            set
+            {
+                SetValue(PlayerTwoProperty, value);
+            }
+        }
+
+        // 1
+        static object CoerceValueCallbackMethodPlayerTwo(DependencyObject d, object baseValue)
+        {
+            var a = (GameCanvas)d;
+
+            a._playerTwo.Fill = a.PlayerTwo.Avatar;
+
+            //if (IsLegalMove(a.PlayerOne.Point.X, a.PlayerOne.Point.Y))
+            //{
+            Canvas.SetLeft(a._playerTwo, a.PlayerTwo.Point.X);
+            Canvas.SetTop(a._playerTwo, a.PlayerTwo.Point.Y);
+            //}
+
+            return baseValue;
+        }
+
+        // 2
+        static bool ValidateValueCallbackMethodPlayerTwo(object value)
+        {
+            return true;
+        }
+
+        // 3
+        static void ChangedCallbackMethodPlayerTwo(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var a = (GameCanvas)d;
+            a._playerTwo.Fill = a.PlayerTwo.Avatar;
+            Canvas.SetLeft(a._playerTwo, (e.NewValue as Player).Point.X);
+            Canvas.SetTop(a._playerTwo, a.PlayerTwo.Point.Y);
+        }
+        //------------------------------------------------------------------------
+        //------------------------------------------------------------------------
+        // ----------------  WALS  -----------------------------------------------
+
+        private Collection<Rectangle> _walls = new Collection<Rectangle>();
+
+        private static FrameworkPropertyMetadata _metadataWalls = new FrameworkPropertyMetadata(
+            new PropertyChangedCallback(ChangedCallbackMethodWalls), new CoerceValueCallback(CoerceValueCallbackMethodWalls));
+
+        // Свойство зависимостей.
+        public static readonly DependencyProperty WallsProperty = DependencyProperty.Register("Walls",
+                                                                           typeof(Collection<WallItem>),
+                                                                           typeof(GameCanvas),
+                                                                           _metadataWalls,
+                                                                           new ValidateValueCallback(ValidateValueCallbackMethodWalls));
+
+        public Collection<WallItem> Walls
+        {
+            get
+            {
+                return (Collection<WallItem>)GetValue(WallsProperty);
+            }
+            set
+            {
+                SetValue(WallsProperty, value);
+            }
+        }
+
+        // 1
+        static object CoerceValueCallbackMethodWalls(DependencyObject d, object baseValue)
+        {
+            var a = (GameCanvas)d;
+
+            try
+            {
+                foreach (var wall in a.Walls)
+                {
+                    Canvas.SetTop(wall.Recangle, wall.Y);
+                    Canvas.SetLeft(wall.Recangle, wall.X);
+                    a.Children.Add(wall.Recangle);
+                }
+            }
+            catch (Exception)
+            {
+            }
+
+            return baseValue;
+        }
+
+        // 2
+        static bool ValidateValueCallbackMethodWalls(object value)
+        {
+            return true;
+        }
+
+        // 3
+        static void ChangedCallbackMethodWalls(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+
+        }
 
         ///------------------------------------------------------------------------
-        ///
+        /// -------------------
         protected override void OnInitialized(EventArgs e)
         {
             base.OnInitialized(e);
 
-            //_playerOne = new Canvas();
-            //_playerOne.Background = PlayerOne.PlayerAvatar;
+
             _playerOne.Width = 35;
             _playerOne.Height = 35;
             Canvas.SetLeft(_playerOne, 0);
             Canvas.SetTop(_playerOne, 0);
             this.Children.Add(_playerOne);
+
+            _playerTwo.Width = 35;
+            _playerTwo.Height = 35;
+            Canvas.SetLeft(_playerTwo, 0);
+            Canvas.SetTop(_playerTwo, 0);
+            this.Children.Add(_playerTwo);
         }
     }
 }

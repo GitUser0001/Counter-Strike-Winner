@@ -131,6 +131,7 @@
     <Compile Include="Model\MapRepository.cs" />
     <Compile Include="Model\Player.cs" />
     <Compile Include="Model\TeroristMechanics.cs" />
+    <Compile Include="Model\WallItem.cs" />
     <Compile Include="UIElements\GameCanvas.cs" />
     <Compile Include="ViewModel\EnvelopeWindowViewModel.cs" />
     <Compile Include="ViewModel\GameControlViewModel.cs" />

@@ -26,6 +26,12 @@ namespace CounterStrike.ViewModel
         private RelayCommand _movePlayerOneDownCommand;
         private RelayCommand _movePlayerOneLeftCommand;
         private RelayCommand _movePlayerOneRightCommand;
+
+        private RelayCommand _movePlayerTwoUpCommand;
+        private RelayCommand _movePlayerTwoDownCommand;
+        private RelayCommand _movePlayerTwoLeftCommand;
+        private RelayCommand _movePlayerTwoRightCommand;
+
         private Player _playerOne;
         private Player _playerTwo;
         private Map _map;
@@ -176,7 +182,92 @@ namespace CounterStrike.ViewModel
         {
             return true;
         }
-    }
         #endregion
         // ---------------------------------------------------
+
+        public ICommand MovePlayerTwoUp
+        {
+            get
+            {
+                if (_movePlayerTwoUpCommand == null)
+                    _movePlayerTwoUpCommand = new RelayCommand(ExecuteMovePlayerTwoUpCommand, CanExecuteMovePlayerTwoUpCommand);
+                return _movePlayerTwoUpCommand;
+            }
+        }
+
+        public void ExecuteMovePlayerTwoUpCommand(object parameter)
+        {
+            PlayerTwo.ChangePosition(Direction.Up);
+            OnPropertyChanged("PlayerTwo");
+        }
+
+        public bool CanExecuteMovePlayerTwoUpCommand(object parameter)
+        {
+            return true;
+        }
+
+        public ICommand MovePlayerTwoDown
+        {
+            get
+            {
+                if (_movePlayerTwoDownCommand == null)
+                    _movePlayerTwoDownCommand = new RelayCommand(ExecuteMovePlayerTwoDownCommand, CanExecuteMovePlayerTwoDownCommand);
+                return _movePlayerTwoDownCommand;
+            }
+        }
+
+        public void ExecuteMovePlayerTwoDownCommand(object parameter)
+        {
+            PlayerTwo.ChangePosition(Direction.Down);
+            OnPropertyChanged("PlayerTwo");
+        }
+
+        public bool CanExecuteMovePlayerTwoDownCommand(object parameter)
+        {
+            return true;
+        }
+
+        public ICommand MovePlayerTwoLeft
+        {
+            get
+            {
+                if (_movePlayerTwoLeftCommand == null)
+                    _movePlayerTwoLeftCommand = new RelayCommand(ExecuteMovePlayerTwoLeftCommand, CanExecuteMovePlayerTwoLeftCommand);
+                return _movePlayerTwoLeftCommand;
+            }
+        }
+
+        public void ExecuteMovePlayerTwoLeftCommand(object parameter)
+        {
+            PlayerTwo.ChangePosition(Direction.Left);
+            OnPropertyChanged("PlayerTwo");
+        }
+
+        public bool CanExecuteMovePlayerTwoLeftCommand(object parameter)
+        {
+            return true;
+        }
+
+        public ICommand MovePlayerTwoRight
+        {
+            get
+            {
+                if (_movePlayerTwoRightCommand == null)
+                    _movePlayerTwoRightCommand = new RelayCommand(ExecuteMovePlayerTwoRightCommand, CanExecuteMovePlayerTwoRightCommand);
+                return _movePlayerTwoRightCommand;
+            }
+        }
+
+        public void ExecuteMovePlayerTwoRightCommand(object parameter)
+        {
+            PlayerTwo.ChangePosition(Direction.Right);
+            OnPropertyChanged("PlayerTwo");
+        }
+
+        public bool CanExecuteMovePlayerTwoRightCommand(object parameter)
+        {
+            return true;
+        }
+    }
 }
+
