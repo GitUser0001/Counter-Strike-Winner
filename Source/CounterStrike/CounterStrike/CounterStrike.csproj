@@ -123,14 +123,11 @@
       <DependentUpon>SignInControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\RelayCommands.cs" />
-    <Compile Include="Model\CounterTeroristMechanics.cs" />
     <Compile Include="Model\EnvelopeWindowManager.cs" />
     <Compile Include="Model\GameSettings.cs" />
-    <Compile Include="Model\IPlayerMechanics.cs" />
     <Compile Include="Model\Map.cs" />
     <Compile Include="Model\MapRepository.cs" />
     <Compile Include="Model\Player.cs" />
-    <Compile Include="Model\TeroristMechanics.cs" />
     <Compile Include="Model\WallItem.cs" />
     <Compile Include="UIElements\GameCanvas.cs" />
     <Compile Include="ViewModel\EnvelopeWindowViewModel.cs" />
