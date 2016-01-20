@@ -60,6 +60,11 @@ namespace CounterStrike.ViewModel
                 if (_playerTwo == null)
                 {
                     _playerTwo = GameSettings.PlayerTwo;
+
+                    if (_playerTwo == null)
+                    {
+                        _playerTwo = new Player();
+                    }
                 }
                 return _playerTwo;
             }

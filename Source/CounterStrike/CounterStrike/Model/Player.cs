@@ -19,6 +19,13 @@ namespace CounterStrike.Model
         private Point _pointOld;
         private double _step;
 
+        /// <summary>
+        /// Create Empty Заглушку
+        /// </summary>
+        public Player()
+        {
+        }
+
         public Player(string nickName, PlayerType regionType, int weaponNumber, Color color)
         {
             NickName = nickName;
