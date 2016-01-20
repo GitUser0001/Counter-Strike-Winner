@@ -257,6 +257,18 @@
       <Name>CounterStrikeLibrary</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Media\PlayerCounter\PlayerDownCounter.png" />
+    <Resource Include="Media\PlayerCounter\PlayerLeftCounter.png" />
+    <Resource Include="Media\PlayerCounter\PlayerRightCounter.png" />
+    <Resource Include="Media\PlayerCounter\PlayerTopCounter.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Media\PlayerTerorist\PlayerDown.Ter.png" />
+    <Resource Include="Media\PlayerTerorist\PlayerLefTer.png" />
+    <Resource Include="Media\PlayerTerorist\PlayerRightTer.png" />
+    <Resource Include="Media\PlayerTerorist\PlayerTopTer.png" />
+  </ItemGroup>
   <!--=======
 >>>>>>> 74a37c8c24e70c6c926ebf2e36258519e7965171-->
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
