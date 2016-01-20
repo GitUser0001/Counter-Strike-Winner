@@ -26,11 +26,13 @@ namespace CounterStrike.ViewModel
         private RelayCommand _movePlayerOneDownCommand;
         private RelayCommand _movePlayerOneLeftCommand;
         private RelayCommand _movePlayerOneRightCommand;
+        private RelayCommand _shootPlayerOneCommand;
 
         private RelayCommand _movePlayerTwoUpCommand;
         private RelayCommand _movePlayerTwoDownCommand;
         private RelayCommand _movePlayerTwoLeftCommand;
         private RelayCommand _movePlayerTwoRightCommand;
+        private RelayCommand _shootPlayerTwoCommand;
 
         private Player _playerOne;
         private Player _playerTwo;
@@ -105,6 +107,26 @@ namespace CounterStrike.ViewModel
 
         // --------------------- Player One ------------------
         #region MyRegion
+        public ICommand ShootPlayerOne
+        {
+            get
+            {
+                if (_shootPlayerOneCommand == null)
+                    _shootPlayerOneCommand = new RelayCommand(ExecuteShootPlayerOneCommand, CanExecuteShootPlayerOneCommand);
+                return _shootPlayerOneCommand;
+            }
+        }
+
+        private bool CanExecuteShootPlayerOneCommand(object obj)
+        {
+            return true;
+        }
+
+        private void ExecuteShootPlayerOneCommand(object obj)
+        {
+            this.PlayerOne.PlayerHealth.Count = this.PlayerOne.PlayerHealth.Count - 20;
+            this.PlayerOne.PlayerBullet.Count--;
+        }
 
         public ICommand MovePlayerOneUp
         {
@@ -192,6 +214,30 @@ namespace CounterStrike.ViewModel
         #endregion
         // ---------------------------------------------------
 
+        // --------------------- Player Two ----------------
+        #region
+
+        public ICommand ShootPlayerTwo
+        {
+            get
+            {
+                if (_shootPlayerTwoCommand == null)
+                    _shootPlayerTwoCommand = new RelayCommand(ExecuteShootPlayerTwoCommand, CanExecuteShootPlayerTwoCommand);
+                return _shootPlayerTwoCommand;
+            }
+        }
+
+        private bool CanExecuteShootPlayerTwoCommand(object obj)
+        {
+            return true;
+        }
+
+        private void ExecuteShootPlayerTwoCommand(object obj)
+        {
+            this.PlayerTwo.PlayerHealth.Count = this.PlayerTwo.PlayerHealth.Count - 20;
+            this.PlayerTwo.PlayerBullet.Count--;
+        }
+
         public ICommand MovePlayerTwoUp
         {
             get
@@ -275,6 +321,8 @@ namespace CounterStrike.ViewModel
         {
             return true;
         }
+        #endregion
+        // ------------------------------------------------
     }
 }
 

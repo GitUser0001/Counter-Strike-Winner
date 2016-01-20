@@ -135,6 +135,7 @@
     <Compile Include="Model\Bullet.cs" />
     <Compile Include="Model\EnvelopeWindowManager.cs" />
     <Compile Include="Model\GameSettings.cs" />
+    <Compile Include="Model\Health.cs" />
     <Compile Include="Model\Map.cs" />
     <Compile Include="Model\MapRepository.cs" />
     <Compile Include="Model\Player.cs" />
@@ -296,6 +297,14 @@
     <Resource Include="Media\Bullet\bulletLeft.png" />
     <Resource Include="Media\Bullet\bulletRight.png" />
     <Resource Include="Media\Bullet\bulletTop.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Media\Health\health0.png" />
+    <Resource Include="Media\Health\health1.png" />
+    <Resource Include="Media\Health\health2.png" />
+    <Resource Include="Media\Health\health3.png" />
+    <Resource Include="Media\Health\health4.png" />
+    <Resource Include="Media\Health\health5.png" />
   </ItemGroup>
   <!--=======
 >>>>>>> 74a37c8c24e70c6c926ebf2e36258519e7965171-->

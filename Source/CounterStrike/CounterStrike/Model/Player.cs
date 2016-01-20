@@ -33,6 +33,7 @@ namespace CounterStrike.Model
             RegionType = regionType;
             WeaponNumber = weaponNumber;
             this.PlayerBullet = new Bullet();
+            this.PlayerHealth = new Health(100);
 
             var colorBitmapSource = CreateBitmapSource(color);
             Color = new ImageBrush(colorBitmapSource);
@@ -91,7 +92,7 @@ namespace CounterStrike.Model
 
         public ImageBrush Color { get; set; }
 
-        public int Health { get; set; }
+        public Health PlayerHealth { get; set; }
         public Bullet PlayerBullet
         {
             get { return this._bullet; }
@@ -140,7 +141,7 @@ namespace CounterStrike.Model
 
         public override string ToString()
         {
-            return string.Format("{0} : {1}", NickName, Health);
+            return string.Format("{0} : {1}", NickName, PlayerHealth.Count);
         }
 
         private void SetPlayerParameters(PlayerType regionType)
@@ -151,25 +152,25 @@ namespace CounterStrike.Model
             {
                 case PlayerType.Terrorist:
                     imageSource = new Uri("pack://application:,,,/Media/Models/counterstrike1.png");
-                    Health = 100;
+                    PlayerHealth.Count = 100;
                     _step = 5;
                     _bullet.Count = 10;
                     break;
                 case PlayerType.CounterTerrorist:
                     imageSource = new Uri("pack://application:,,,/Media/Models/counterstrike3_256.png");
-                    Health = 100;
+                    PlayerHealth.Count = 100;
                     _step = 5;
                     _bullet.Count = 10;
                     break;
                 case PlayerType.ADMIN:
                     imageSource = new Uri("pack://application:,,,/Media/Models/policeman.png");
-                    Health = 999;
+                    PlayerHealth.Count = 999;
                     _step = 10;
                     _bullet.Count = 999;
                     break;
                 default:
                     imageSource = new Uri("pack://application:,,,/Media/Models/policeman.png");
-                    Health = 1;
+                    PlayerHealth.Count = 20;
                     _step = 5;
                     _bullet.Count = 5;
                     break;

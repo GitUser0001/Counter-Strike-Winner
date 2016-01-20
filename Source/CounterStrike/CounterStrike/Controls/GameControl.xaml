@@ -15,11 +15,13 @@
         <KeyBinding Command="{Binding MovePlayerOneDown}" Key="S"/>
         <KeyBinding Command="{Binding MovePlayerOneRight}" Key="D"/>
         <KeyBinding Command="{Binding MovePlayerOneLeft}" Key="A"/>
+        <KeyBinding Command="{Binding ShootPlayerOne}" Key="Enter"/>
 
         <KeyBinding Command="{Binding MovePlayerTwoUp}" Key="Up"/>
         <KeyBinding Command="{Binding MovePlayerTwoDown}" Key="Down"/>
         <KeyBinding Command="{Binding MovePlayerTwoRight}" Key="Right"/>
         <KeyBinding Command="{Binding MovePlayerTwoLeft}" Key="Left"/>
+        <KeyBinding Command="{Binding ShootPlayerTwo}" Key="Tab"/>
     </UserControl.InputBindings>
 
     <Grid>
@@ -28,25 +30,24 @@
             <RowDefinition Height="60"/>
         </Grid.RowDefinitions>
 
+        <!-- GAME CANVAS-->
         <UIElements:GameCanvas PlayerOne="{Binding Path=PlayerOne, UpdateSourceTrigger=PropertyChanged}" 
                                PlayerTwo="{Binding Path=PlayerTwo, UpdateSourceTrigger=PropertyChanged}"
                                Walls="{Binding Path=Map.WallItems, UpdateSourceTrigger=PropertyChanged}"
                                Background="{Binding Path=Map.BackgroundImage, UpdateSourceTrigger=PropertyChanged}">
-
-            <!--<Button Canvas.Left="300" Canvas.Top="100" Command="{Binding Move}">
-                asdasd
-            </Button>-->
         </UIElements:GameCanvas>
 
 
         <!--============================== Player One ================================-->
         <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Left" >
 
+            <!-- AVATAR -->
             <Canvas Width="60" Height="60"  Background="{Binding Path=PlayerOne.Color, UpdateSourceTrigger=Default}">
                 <Canvas Width="50" Height="50" 
                    Background="{Binding Path=PlayerOne.Avatar, UpdateSourceTrigger=PropertyChanged}"/>
             </Canvas>
             
+            <!-- COUNT BULLETS-->
             <WrapPanel VerticalAlignment="Center" Margin="5,0,5,0">
                 <Border BorderBrush="Gold" BorderThickness="2" CornerRadius="2">
                     <Grid>
@@ -61,6 +62,12 @@
                 </Border>
             </WrapPanel>
 
+            <!-- COUNT HEALTH-->
+            <StackPanel Orientation="Horizontal" Height="30">
+                <Image Source="{Binding Path=PlayerOne.PlayerHealth.Photo}"/>
+            </StackPanel>
+
+            <!-- PLAYER NAME -->
             <WrapPanel VerticalAlignment="Center" Margin="5,0,5,0">
                 <Border Height="30" BorderBrush="Gold" BorderThickness="2" CornerRadius="2" VerticalAlignment="Center">
                     <TextBlock Margin="5,0,5,0" Text="{Binding Path=PlayerOne, UpdateSourceTrigger=PropertyChanged}" 
@@ -71,6 +78,8 @@
 
         <!--============================== Player Two ================================-->
         <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right">
+
+            <!-- PLAYER NAME -->
             <WrapPanel VerticalAlignment="Center" Margin="5,0,5,0" Visibility="{Binding Path=PlayerTwo.VisibilityControl}">
                 <Border Height="30" BorderBrush="Gold" BorderThickness="2" CornerRadius="2" VerticalAlignment="Center">
                     <TextBlock Margin="5,0,5,0" Text="{Binding Path=PlayerTwo, UpdateSourceTrigger=PropertyChanged}" 
@@ -78,7 +87,12 @@
                 </Border>
             </WrapPanel>
 
+            <!-- COUNT HEALTH-->
+            <StackPanel Orientation="Horizontal" Height="30" Visibility="{Binding Path=PlayerTwo.VisibilityControl}">
+                <Image Source="{Binding Path=PlayerTwo.PlayerHealth.Photo}"/>
+            </StackPanel>
 
+            <!-- COUNT BULLETS-->
             <WrapPanel VerticalAlignment="Center" Margin="5,0,5,0" Visibility="{Binding Path=PlayerTwo.VisibilityControl}">
                 <Border BorderBrush="Gold" BorderThickness="2" CornerRadius="2">
                     <Grid>
@@ -92,15 +106,12 @@
                     </Grid>
                 </Border>
             </WrapPanel>
-            
-            
+
+            <!-- AVATAR -->
             <Canvas Width="60" Height="60"  Background="{Binding Path=PlayerTwo.Color, UpdateSourceTrigger=PropertyChanged}">
                 <Canvas Width="50" Height="50" 
                    Background="{Binding Path=PlayerTwo.Avatar, UpdateSourceTrigger=PropertyChanged}"/>
             </Canvas>
-            
-            
-
         </StackPanel>
     </Grid>
 </UserControl>

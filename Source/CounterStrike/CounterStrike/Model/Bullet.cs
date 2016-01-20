@@ -29,8 +29,6 @@ namespace CounterStrike.Model
                 {
                     this._photo = value;
                     this.OnPropertyChanged("Photo");
-                    //RaisePropertyChangedEvent("Photo");
-                    //OnPropertyChanged("Photo");
                 }
             }
         }
@@ -46,6 +44,11 @@ namespace CounterStrike.Model
                 if (value != this._count)
                 {
                     this._count = value;
+                    this.OnPropertyChanged("Count");
+                }
+                if(value <= -1)
+                {
+                    this._count = 0;
                     this.OnPropertyChanged("Count");
                 }
             }
