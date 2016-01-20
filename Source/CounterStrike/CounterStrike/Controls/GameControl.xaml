@@ -3,11 +3,19 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:VM="clr-namespace:CounterStrike.ViewModel">
+             xmlns:VM="clr-namespace:CounterStrike.ViewModel"
+             xmlns:UIElements="clr-namespace:CounterStrike.UIElements">
 
     <UserControl.DataContext>
         <VM:GameControlViewModel></VM:GameControlViewModel>
     </UserControl.DataContext>
+
+    <UserControl.InputBindings>
+        <KeyBinding Command="{Binding MovePlayerOneUp}" Key="W"/>
+        <KeyBinding Command="{Binding MovePlayerOneDown}" Key="S"/>
+        <KeyBinding Command="{Binding MovePlayerOneRight}" Key="D"/>
+        <KeyBinding Command="{Binding MovePlayerOneLeft}" Key="A"/>
+    </UserControl.InputBindings>
 
     <Grid>
         <Grid.RowDefinitions>
@@ -15,16 +23,21 @@
             <RowDefinition Height="60"/>
         </Grid.RowDefinitions>
 
-        <Canvas Background="{Binding Path=Map.BackgroundImage, UpdateSourceTrigger=PropertyChanged}">            
-        </Canvas>
+        <UIElements:GameCanvas PlayerOne="{Binding Path=PlayerOne, UpdateSourceTrigger=PropertyChanged}" 
+                               Background="{Binding Path=Map.BackgroundImage, UpdateSourceTrigger=PropertyChanged}">
+
+            <!--<Button Canvas.Left="300" Canvas.Top="100" Command="{Binding Move}">
+                asdasd
+            </Button>-->
+        </UIElements:GameCanvas>
 
 
         <!--============================== Player One ================================-->
         <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Left" >
-            
-            <Canvas Width="60" Height="60"  Background="{Binding Path=PlayerOne.Color, UpdateSourceTrigger=PropertyChanged}">
+
+            <Canvas Width="60" Height="60"  Background="{Binding Path=PlayerOne.Color, UpdateSourceTrigger=Default}">
                 <Canvas Width="50" Height="50" 
-                   Background="{Binding Path=PlayerOne.PlayerAvatar, UpdateSourceTrigger=PropertyChanged}"/>
+                   Background="{Binding Path=PlayerOne.Avatar, UpdateSourceTrigger=PropertyChanged}"/>
             </Canvas>
 
 
@@ -39,7 +52,7 @@
 
             <Canvas Width="60" Height="60"  Background="{Binding Path=PlayerTwo.Color, UpdateSourceTrigger=PropertyChanged}">
                 <Canvas Width="50" Height="50" 
-                   Background="{Binding Path=PlayerTwo.PlayerAvatar, UpdateSourceTrigger=PropertyChanged}"/>
+                   Background="{Binding Path=PlayerTwo.Avatar, UpdateSourceTrigger=PropertyChanged}"/>
             </Canvas>
             
             

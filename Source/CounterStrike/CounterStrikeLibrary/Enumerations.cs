@@ -25,4 +25,17 @@ namespace CounterStrikeLibrary
         SingleGame,
         MultiGame
     }
+
+    public enum Direction
+    {
+        Up,
+        Down,
+        Left,
+        Right,
+
+        Up_Left,
+        Up_Right,
+        Down_Left,
+        Down_Right
+    }
 }
