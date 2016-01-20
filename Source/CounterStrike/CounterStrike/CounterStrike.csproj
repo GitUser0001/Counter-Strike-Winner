@@ -110,6 +110,9 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Controls\BulletCountControl.xaml.cs">
+      <DependentUpon>BulletCountControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\GameCanvas.xaml.cs">
       <DependentUpon>GameCanvas.xaml</DependentUpon>
     </Compile>
@@ -129,6 +132,7 @@
     <Compile Include="GameLogic\GameMapBuilder.cs" />
     <Compile Include="GameLogic\MapBuilder.cs" />
     <Compile Include="Infrastructure\RelayCommands.cs" />
+    <Compile Include="Model\Bullet.cs" />
     <Compile Include="Model\EnvelopeWindowManager.cs" />
     <Compile Include="Model\GameSettings.cs" />
     <Compile Include="Model\Map.cs" />
@@ -204,6 +208,10 @@
     <Resource Include="Media\global_offensive.png" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Controls\BulletCountControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\GameCanvas.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -282,6 +290,12 @@
     <Resource Include="Media\PlayerTerorist\PlayerLefTer.png" />
     <Resource Include="Media\PlayerTerorist\PlayerRightTer.png" />
     <Resource Include="Media\PlayerTerorist\PlayerTopTer.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Media\Bullet\bulletDown.png" />
+    <Resource Include="Media\Bullet\bulletLeft.png" />
+    <Resource Include="Media\Bullet\bulletRight.png" />
+    <Resource Include="Media\Bullet\bulletTop.png" />
   </ItemGroup>
   <!--=======
 >>>>>>> 74a37c8c24e70c6c926ebf2e36258519e7965171-->

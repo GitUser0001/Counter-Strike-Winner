@@ -46,17 +46,54 @@
                 <Canvas Width="50" Height="50" 
                    Background="{Binding Path=PlayerOne.Avatar, UpdateSourceTrigger=PropertyChanged}"/>
             </Canvas>
+            
+            <WrapPanel VerticalAlignment="Center" Margin="5,0,5,0">
+                <Border BorderBrush="Gold" BorderThickness="2" CornerRadius="2">
+                    <Grid>
+                        <StackPanel Orientation="Horizontal">
+                            <Image Height="30" Width="25" Source="{Binding Path=PlayerOne.PlayerBullet.Photo}"/>
 
+                            <TextBlock Height="27" VerticalAlignment="Center" Width="23" FontWeight="Medium" 
+                                       Text="{Binding Path=PlayerOne.PlayerBullet.Count, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" 
+                                       FontSize="16" Foreground="Red" />
+                        </StackPanel>
+                    </Grid>
+                </Border>
+            </WrapPanel>
 
-            <TextBlock Text="{Binding Path=PlayerOne, UpdateSourceTrigger=PropertyChanged}" 
-                       VerticalAlignment="Center" Margin="10" Padding="10"/>
+            <WrapPanel VerticalAlignment="Center" Margin="5,0,5,0">
+                <Border Height="30" BorderBrush="Gold" BorderThickness="2" CornerRadius="2" VerticalAlignment="Center">
+                    <TextBlock Margin="5,0,5,0" Text="{Binding Path=PlayerOne, UpdateSourceTrigger=PropertyChanged}" 
+                       VerticalAlignment="Center" FontWeight="Medium" FontSize="16" Foreground="{Binding Path=PlayerOne.Color}"/>
+                </Border>
+            </WrapPanel>
         </StackPanel>
 
         <!--============================== Player Two ================================-->
         <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right">
-            <TextBlock Text="{Binding Path=PlayerTwo, UpdateSourceTrigger=PropertyChanged}" 
-                       VerticalAlignment="Center" Margin="10" Padding="10"/>
+            <WrapPanel VerticalAlignment="Center" Margin="5,0,5,0" Visibility="{Binding Path=PlayerTwo.VisibilityControl}">
+                <Border Height="30" BorderBrush="Gold" BorderThickness="2" CornerRadius="2" VerticalAlignment="Center">
+                    <TextBlock Margin="5,0,5,0" Text="{Binding Path=PlayerTwo, UpdateSourceTrigger=PropertyChanged}" 
+                       VerticalAlignment="Center" FontWeight="Medium" FontSize="16" Foreground="{Binding Path=PlayerTwo.Color}"/>
+                </Border>
+            </WrapPanel>
 
+
+            <WrapPanel VerticalAlignment="Center" Margin="5,0,5,0" Visibility="{Binding Path=PlayerTwo.VisibilityControl}">
+                <Border BorderBrush="Gold" BorderThickness="2" CornerRadius="2">
+                    <Grid>
+                        <StackPanel Orientation="Horizontal">
+                            <Image Height="30" Width="25" Source="{Binding Path=PlayerTwo.PlayerBullet.Photo}"/>
+
+                            <TextBlock Height="27" VerticalAlignment="Center" Width="23" FontWeight="Medium" 
+                                       Text="{Binding Path=PlayerTwo.PlayerBullet.Count, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" 
+                                       FontSize="16" Foreground="Red" />
+                        </StackPanel>
+                    </Grid>
+                </Border>
+            </WrapPanel>
+            
+            
             <Canvas Width="60" Height="60"  Background="{Binding Path=PlayerTwo.Color, UpdateSourceTrigger=PropertyChanged}">
                 <Canvas Width="50" Height="50" 
                    Background="{Binding Path=PlayerTwo.Avatar, UpdateSourceTrigger=PropertyChanged}"/>

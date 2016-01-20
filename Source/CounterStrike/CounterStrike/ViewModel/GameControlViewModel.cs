@@ -64,6 +64,8 @@ namespace CounterStrike.ViewModel
                     if (_playerTwo == null)
                     {
                         _playerTwo = new Player();
+                        // Visibility for control on game canvas
+                        _playerTwo.VisibilityControl = Visibility.Collapsed;
                     }
                 }
                 return _playerTwo;

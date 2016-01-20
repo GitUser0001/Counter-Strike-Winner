@@ -18,6 +18,7 @@ namespace CounterStrike.Model
         private Point _pointNew;
         private Point _pointOld;
         private double _step;
+        private Bullet _bullet;
 
         /// <summary>
         /// Create Empty Заглушку
@@ -31,9 +32,11 @@ namespace CounterStrike.Model
             NickName = nickName;
             RegionType = regionType;
             WeaponNumber = weaponNumber;
+            this.PlayerBullet = new Bullet();
 
             var colorBitmapSource = CreateBitmapSource(color);
             Color = new ImageBrush(colorBitmapSource);
+
 
             SetPlayerParameters(regionType);
         }
@@ -89,6 +92,13 @@ namespace CounterStrike.Model
         public ImageBrush Color { get; set; }
 
         public int Health { get; set; }
+        public Bullet PlayerBullet
+        {
+            get { return this._bullet; }
+            set { this._bullet = value; }
+        }
+
+        public Visibility VisibilityControl { get; set; }
 
         public void RevertPosition()
         {
@@ -143,21 +153,25 @@ namespace CounterStrike.Model
                     imageSource = new Uri("pack://application:,,,/Media/Models/counterstrike1.png");
                     Health = 100;
                     _step = 5;
+                    _bullet.Count = 10;
                     break;
                 case PlayerType.CounterTerrorist:
                     imageSource = new Uri("pack://application:,,,/Media/Models/counterstrike3_256.png");
                     Health = 100;
                     _step = 5;
+                    _bullet.Count = 10;
                     break;
                 case PlayerType.ADMIN:
                     imageSource = new Uri("pack://application:,,,/Media/Models/policeman.png");
                     Health = 999;
                     _step = 10;
+                    _bullet.Count = 999;
                     break;
                 default:
                     imageSource = new Uri("pack://application:,,,/Media/Models/policeman.png");
                     Health = 1;
                     _step = 5;
+                    _bullet.Count = 5;
                     break;
             }
             ImageSource avatarImage = new BitmapImage(imageSource);
