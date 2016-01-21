@@ -251,7 +251,7 @@ namespace CounterStrike.UIElements
 
         //------------------------------------------------------------------------
         //------------------------------------------------------------------------
-        // ----------------  Bullet  -----------------------------------------------
+        // ----------------  Bullet  ---------------------------------------------
 
 
         //IEnumerable<Rect> _bulletsCoordinates = new List<Rect>();
@@ -321,7 +321,6 @@ namespace CounterStrike.UIElements
         // 3
         static void ChangedCallbackMethodBullets(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-
         }
 
 

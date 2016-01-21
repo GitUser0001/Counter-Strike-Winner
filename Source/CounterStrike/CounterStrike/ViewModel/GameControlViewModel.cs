@@ -1,4 +1,5 @@
-﻿using CounterStrike.Infrastructure;
+﻿using CounterStrike.Engine;
+using CounterStrike.Infrastructure;
 using CounterStrike.Model;
 using CounterStrikeLibrary;
 using System;
@@ -41,6 +42,20 @@ namespace CounterStrike.ViewModel
         private Player _playerTwo;
         private ObservableCollection<BulletItem> _bulletsList;
         private Map _map;
+
+        private GameEngine _gameEngine;
+
+        public GameEngine GameEngine
+        {
+            get
+            {
+                if (_gameEngine == null)
+                {
+                    _gameEngine = new GameEngine(this, _bulletsList, _map.WallItems);
+                }
+                return _gameEngine;
+            }
+        }
 
         public Player PlayerOne
         {
@@ -139,7 +154,7 @@ namespace CounterStrike.ViewModel
         public void ExecuteShootPlayerOneCommand(object parameter)
         {
             _bulletsList.Add(new BulletItem(PlayerOne.PointNew, PlayerOne.CurrentDirection, PlayerOne.NickName));
-            OnPropertyChanged("BulletsList");
+            GameEngine.MoveBullets();
         }
 
         public bool CanExecuteShootPlayerOneCommand(object parameter)
@@ -162,7 +177,7 @@ namespace CounterStrike.ViewModel
         public void ExecuteShootPlayerTwoCommand(object parameter)
         {
             _bulletsList.Add(new BulletItem(PlayerTwo.PointNew, PlayerTwo.CurrentDirection, PlayerTwo.NickName));
-            OnPropertyChanged("BulletsList");
+            GameEngine.MoveBullets();
         }
 
         public bool CanExecuteShootPlayerTwoCommand(object parameter)
@@ -186,8 +201,9 @@ namespace CounterStrike.ViewModel
 
         public void ExecuteMovePlayerOneUpCommand(object parameter)
         {
-            PlayerOne.ChangePosition(Direction.Up);
-            OnPropertyChanged("PlayerOne");
+            GameEngine.MovePlayer(PlayerOne, Direction.Up);
+            //PlayerOne.ChangePosition(Direction.Up);
+            //OnPropertyChanged("PlayerOne");
         }
 
         public bool CanExecuteMovePlayerOneUpCommand(object parameter)
@@ -207,8 +223,9 @@ namespace CounterStrike.ViewModel
 
         public void ExecuteMovePlayerOneDownCommand(object parameter)
         {
-            PlayerOne.ChangePosition(Direction.Down);
-            OnPropertyChanged("PlayerOne");
+            GameEngine.MovePlayer(PlayerOne, Direction.Down);
+            //PlayerOne.ChangePosition(Direction.Down);
+            //OnPropertyChanged("PlayerOne");
         }
 
         public bool CanExecuteMovePlayerOneDownCommand(object parameter)
@@ -228,8 +245,9 @@ namespace CounterStrike.ViewModel
 
         public void ExecuteMovePlayerOneLeftCommand(object parameter)
         {
-            PlayerOne.ChangePosition(Direction.Left);
-            OnPropertyChanged("PlayerOne");
+            GameEngine.MovePlayer(PlayerOne, Direction.Left);
+            //PlayerOne.ChangePosition(Direction.Left);
+            //OnPropertyChanged("PlayerOne");
         }
 
         public bool CanExecuteMovePlayerOneLeftCommand(object parameter)
@@ -249,8 +267,9 @@ namespace CounterStrike.ViewModel
 
         public void ExecuteMovePlayerOneRightCommand(object parameter)
         {
-            PlayerOne.ChangePosition(Direction.Right);
-            OnPropertyChanged("PlayerOne");
+            GameEngine.MovePlayer(PlayerOne, Direction.Right);
+            //PlayerOne.ChangePosition(Direction.Right);
+            //OnPropertyChanged("PlayerOne");
         }
 
         public bool CanExecuteMovePlayerOneRightCommand(object parameter)
@@ -272,8 +291,9 @@ namespace CounterStrike.ViewModel
 
         public void ExecuteMovePlayerTwoUpCommand(object parameter)
         {
-            PlayerTwo.ChangePosition(Direction.Up);
-            OnPropertyChanged("PlayerTwo");
+            GameEngine.MovePlayer(PlayerTwo,Direction.Up);
+            //PlayerTwo.ChangePosition(Direction.Up);
+            //OnPropertyChanged("PlayerTwo");
         }
 
         public bool CanExecuteMovePlayerTwoUpCommand(object parameter)
@@ -293,8 +313,9 @@ namespace CounterStrike.ViewModel
 
         public void ExecuteMovePlayerTwoDownCommand(object parameter)
         {
-            PlayerTwo.ChangePosition(Direction.Down);
-            OnPropertyChanged("PlayerTwo");
+            GameEngine.MovePlayer(PlayerTwo, Direction.Down);
+            //PlayerTwo.ChangePosition(Direction.Down);
+            //OnPropertyChanged("PlayerTwo");
         }
 
         public bool CanExecuteMovePlayerTwoDownCommand(object parameter)
@@ -314,8 +335,9 @@ namespace CounterStrike.ViewModel
 
         public void ExecuteMovePlayerTwoLeftCommand(object parameter)
         {
-            PlayerTwo.ChangePosition(Direction.Left);
-            OnPropertyChanged("PlayerTwo");
+            GameEngine.MovePlayer(PlayerTwo, Direction.Left);
+            //PlayerTwo.ChangePosition(Direction.Left);
+            //OnPropertyChanged("PlayerTwo");
         }
 
         public bool CanExecuteMovePlayerTwoLeftCommand(object parameter)
@@ -335,13 +357,26 @@ namespace CounterStrike.ViewModel
 
         public void ExecuteMovePlayerTwoRightCommand(object parameter)
         {
-            PlayerTwo.ChangePosition(Direction.Right);
-            OnPropertyChanged("PlayerTwo");
+            GameEngine.MovePlayer(PlayerTwo, Direction.Right);
+            //PlayerTwo.ChangePosition(Direction.Right);
+            //OnPropertyChanged("PlayerTwo");
         }
 
         public bool CanExecuteMovePlayerTwoRightCommand(object parameter)
         {
             return true;
+        }
+
+        //----------------------------  Updating  --------------------
+        public void UpdatePlayers()
+        {
+            OnPropertyChanged("PlayerOne");
+            OnPropertyChanged("PlayerTwo");
+        }
+
+        public void UpdateBullets()
+        {
+            OnPropertyChanged("BulletsList");
         }
     }
 }
