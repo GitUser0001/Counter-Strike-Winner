@@ -8,19 +8,27 @@ using System.Threading.Tasks;
 
 namespace CounterStrike.Engine
 {
-    class GameEngine
+    public static class GameEngine
     {
-        public static class GameEngine
+        public static void MovePlayer(Player player, Direction direction)
         {
-            public static void MovePlayer(Player player, Direction direction)
+            if (player == null)
             {
-                player.ChangePosition(direction);
+                throw new ArgumentNullException("player");
             }
 
-            public static void MoveBullet(BulletItem bullet)
+            player.ChangePosition(direction);
+        }
+
+        public static void MoveBullet(BulletItem bullet)
+        {
+            if (bullet == null)
             {
-                bullet.MoveBuller();
+                throw new ArgumentNullException("bullet");
             }
+
+            bullet.MoveBuller();
         }
     }
 }
+
