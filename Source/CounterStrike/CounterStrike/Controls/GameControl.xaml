@@ -22,6 +22,8 @@
         <KeyBinding Command="{Binding MovePlayerTwoRight}" Key="Right"/>
         <KeyBinding Command="{Binding MovePlayerTwoLeft}" Key="Left"/>
         <KeyBinding Command="{Binding ShootPlayerTwo}" Key="Tab"/>
+        
+        <KeyBinding Command="{Binding IsAdmin}" Key="F1"/>
     </UserControl.InputBindings>
 
     <Grid>
@@ -31,7 +33,8 @@
         </Grid.RowDefinitions>
 
         <!-- GAME CANVAS-->
-        <UIElements:GameCanvas PlayerOne="{Binding Path=PlayerOne, UpdateSourceTrigger=PropertyChanged}" 
+        <UIElements:GameCanvas x:Name="gameCanvas" 
+                               PlayerOne="{Binding Path=PlayerOne, UpdateSourceTrigger=PropertyChanged}" 
                                PlayerTwo="{Binding Path=PlayerTwo, UpdateSourceTrigger=PropertyChanged}"
                                Walls="{Binding Path=Map.WallItems, UpdateSourceTrigger=PropertyChanged}"
                                Background="{Binding Path=Map.BackgroundImage, UpdateSourceTrigger=PropertyChanged}">

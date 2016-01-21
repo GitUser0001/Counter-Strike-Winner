@@ -132,7 +132,7 @@ namespace CounterStrike.Model
             _pointOld.X = PointNew.X;
             _pointOld.Y = PointNew.Y;
 
-            _directionImage = _directionImagesDictionary[direction];
+            _directionImage = _directionImagesDictionary[direction]; /// ERROR
             _currentDirection = direction;
 
             switch (direction)

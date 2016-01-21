@@ -131,6 +131,7 @@
     <Compile Include="GameLogic\Coordinate.cs" />
     <Compile Include="GameLogic\GameMapBuilder.cs" />
     <Compile Include="GameLogic\MapBuilder.cs" />
+    <Compile Include="Infrastructure\IGameCanvasView.cs" />
     <Compile Include="Infrastructure\RelayCommands.cs" />
     <Compile Include="Model\Bullet.cs" />
     <Compile Include="Model\EnvelopeWindowManager.cs" />
