@@ -9,7 +9,9 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
+//using System.Windows.Controls;
 using System.Windows.Input;
+using CounterStrike.Infrastructure;
 
 namespace CounterStrike.ViewModel
 {
@@ -22,19 +24,25 @@ namespace CounterStrike.ViewModel
     [SuppressMessage("StyleCop.CSharp.DocumentationRules", "*", Justification = "Reviewed. Suppression is OK here.")]
     public class GameControlViewModel : ViewModelBase
     {
+        private RelayCommand _isAdminCommand;
+
         private RelayCommand _movePlayerOneUpCommand;
         private RelayCommand _movePlayerOneDownCommand;
         private RelayCommand _movePlayerOneLeftCommand;
         private RelayCommand _movePlayerOneRightCommand;
+        private RelayCommand _shootPlayerOneCommand;
 
         private RelayCommand _movePlayerTwoUpCommand;
         private RelayCommand _movePlayerTwoDownCommand;
         private RelayCommand _movePlayerTwoLeftCommand;
         private RelayCommand _movePlayerTwoRightCommand;
+        private RelayCommand _shootPlayerTwoCommand;
 
         private Player _playerOne;
         private Player _playerTwo;
         private Map _map;
+
+        public IGameControlView GameControlView { get; set; }
 
         public Player PlayerOne
         {
@@ -60,6 +68,13 @@ namespace CounterStrike.ViewModel
                 if (_playerTwo == null)
                 {
                     _playerTwo = GameSettings.PlayerTwo;
+
+                    if (_playerTwo == null)
+                    {
+                        _playerTwo = new Player();
+                        // Visibility for control on game canvas
+                        _playerTwo.VisibilityControl = Visibility.Collapsed;
+                    }
                 }
                 return _playerTwo;
             }
@@ -96,8 +111,58 @@ namespace CounterStrike.ViewModel
             }
         }
 
+
+        #region IS ADMIN
+        public ICommand IsAdmin
+        {
+            get
+            {
+                if (_isAdminCommand == null)
+                    _isAdminCommand = new RelayCommand(ExecuteIsAdminCommand, CanExecuteIsAdminCommand);
+                return _isAdminCommand;
+            }
+        }
+
+        private bool CanExecuteIsAdminCommand(object obj)
+        {
+            return true;
+        }
+
+        private void ExecuteIsAdminCommand(object obj)
+        {
+            this.PlayerTwo.PlayerHealth.Count = 100;
+            this.PlayerTwo.PlayerBullet.Count = 100;
+        }
+
+
+        #endregion
+
+
         // --------------------- Player One ------------------
         #region MyRegion
+        public ICommand ShootPlayerOne
+        {
+            get
+            {
+                if (_shootPlayerOneCommand == null)
+                    _shootPlayerOneCommand = new RelayCommand(ExecuteShootPlayerOneCommand, CanExecuteShootPlayerOneCommand);
+                return _shootPlayerOneCommand;
+            }
+        }
+
+        private bool CanExecuteShootPlayerOneCommand(object obj)
+        {
+            return true;
+        }
+
+        private void ExecuteShootPlayerOneCommand(object obj)
+        {
+            if (this.GameControlView == null) return;
+
+            this.PlayerOne.PlayerBullet.Shoot(this.PlayerOne.CurrentDirection, this.PlayerOne.PointNew, this.GameControlView.GameCanvas);
+            //this.PlayerOne.PlayerHealth.Count = this.PlayerOne.PlayerHealth.Count - 20;
+            this.PlayerOne.PlayerBullet.Count--;
+        }
 
         public ICommand MovePlayerOneUp
         {
@@ -185,6 +250,42 @@ namespace CounterStrike.ViewModel
         #endregion
         // ---------------------------------------------------
 
+        // --------------------- Player Two ----------------
+        #region
+
+        public ICommand ShootPlayerTwo
+        {
+            get
+            {
+                if (_shootPlayerTwoCommand == null)
+                    _shootPlayerTwoCommand = new RelayCommand(ExecuteShootPlayerTwoCommand, CanExecuteShootPlayerTwoCommand);
+                return _shootPlayerTwoCommand;
+            }
+        }
+
+        private bool CanExecuteShootPlayerTwoCommand(object obj)
+        {
+            return true;
+        }
+
+        private void ExecuteShootPlayerTwoCommand(object obj)
+        {
+            //// When is single game go Exception
+            try
+            {
+                if (this.GameControlView == null) return;
+
+                this.PlayerTwo.PlayerBullet.Shoot(this.PlayerTwo.CurrentDirection,
+                    this.PlayerTwo.PointNew,
+                    this.GameControlView.GameCanvas);
+                this.PlayerTwo.PlayerBullet.Count--;
+            }
+            catch (Exception)
+            {
+                return;
+            }
+        }
+
         public ICommand MovePlayerTwoUp
         {
             get
@@ -268,6 +369,8 @@ namespace CounterStrike.ViewModel
         {
             return true;
         }
+        #endregion
+        // ------------------------------------------------
     }
 }
 

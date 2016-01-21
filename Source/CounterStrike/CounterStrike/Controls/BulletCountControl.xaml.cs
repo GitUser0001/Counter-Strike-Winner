@@ -12,27 +12,17 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using CounterStrike.Infrastructure;
-using CounterStrike.ViewModel;
 
 namespace CounterStrike.Controls
 {
     /// <summary>
-    /// Interaction logic for GameControl.xaml
+    /// Interaction logic for BulletCountControl.xaml
     /// </summary>
-    public partial class GameControl : UserControl, IGameControlView
+    public partial class BulletCountControl : UserControl
     {
-        public GameControl()
+        public BulletCountControl()
         {
             InitializeComponent();
-            Focusable = true;
-            Loaded += (s, e) => Keyboard.Focus(this);
-            (DataContext as GameControlViewModel).GameControlView = this as IGameControlView;
-        }
-
-        public Canvas GameCanvas
-        {
-            get { return this.gameCanvas; }
         }
     }
 }

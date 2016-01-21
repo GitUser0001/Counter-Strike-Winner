@@ -15,20 +15,35 @@ namespace CounterStrike.Model
     public class Player
     {
         private ImageBrush _avatar;
+        private ImageBrush _directionImage;
         private Point _pointNew;
         private Point _pointOld;
         private double _step;
+        private Bullet _bullet;
+        private Dictionary<Direction, ImageBrush> _directionImagesDictionary;
+        private Direction _currentDirection = Direction.Down;
+
+        /// <summary>
+        /// Create Empty Заглушку
+        /// </summary>
+        public Player()
+        {
+        }
 
         public Player(string nickName, PlayerType regionType, int weaponNumber, Color color)
         {
             NickName = nickName;
             RegionType = regionType;
             WeaponNumber = weaponNumber;
+            this.PlayerBullet = new Bullet();
+            this.PlayerHealth = new Health(100);
 
             var colorBitmapSource = CreateBitmapSource(color);
             Color = new ImageBrush(colorBitmapSource);
 
+
             SetPlayerParameters(regionType);
+            CreateDirectionsDictionary(regionType);
         }
 
         public ImageBrush Avatar
@@ -71,6 +86,22 @@ namespace CounterStrike.Model
             }
         }
 
+        public ImageBrush DirectionImage
+        {
+            get
+            {
+                return _directionImage;
+            }
+        }
+
+        public Direction CurrentDirection
+        {
+            get
+            {
+                return _currentDirection;
+            }
+        }
+
         public Coordinate CoordinatePlayer { get; set; }
 
         public string NickName { get; set; }
@@ -81,7 +112,14 @@ namespace CounterStrike.Model
 
         public ImageBrush Color { get; set; }
 
-        public int Health { get; set; }
+        public Health PlayerHealth { get; set; }
+        public Bullet PlayerBullet
+        {
+            get { return this._bullet; }
+            set { this._bullet = value; }
+        }
+
+        public Visibility VisibilityControl { get; set; }
 
         public void RevertPosition()
         {
@@ -93,6 +131,9 @@ namespace CounterStrike.Model
         {
             _pointOld.X = PointNew.X;
             _pointOld.Y = PointNew.Y;
+
+            _directionImage = _directionImagesDictionary[direction]; /// ERROR
+            _currentDirection = direction;
 
             switch (direction)
             {
@@ -123,7 +164,7 @@ namespace CounterStrike.Model
 
         public override string ToString()
         {
-            return string.Format("{0} : {1}", NickName, Health);
+            return string.Format("{0} : {1}", NickName, PlayerHealth.Count);
         }
 
         private void SetPlayerParameters(PlayerType regionType)
@@ -134,27 +175,72 @@ namespace CounterStrike.Model
             {
                 case PlayerType.Terrorist:
                     imageSource = new Uri("pack://application:,,,/Media/Models/counterstrike1.png");
-                    Health = 100;
+                    PlayerHealth.Count = 100;
                     _step = 5;
+                    _bullet.Count = 10;
                     break;
                 case PlayerType.CounterTerrorist:
                     imageSource = new Uri("pack://application:,,,/Media/Models/counterstrike3_256.png");
-                    Health = 100;
+                    PlayerHealth.Count = 100;
                     _step = 5;
+                    _bullet.Count = 10;
                     break;
                 case PlayerType.ADMIN:
                     imageSource = new Uri("pack://application:,,,/Media/Models/policeman.png");
-                    Health = 999;
+                    PlayerHealth.Count = 999;
                     _step = 10;
+                    _bullet.Count = 999;
                     break;
                 default:
                     imageSource = new Uri("pack://application:,,,/Media/Models/policeman.png");
-                    Health = 1;
+                    PlayerHealth.Count = 20;
                     _step = 5;
+                    _bullet.Count = 5;
                     break;
             }
             ImageSource avatarImage = new BitmapImage(imageSource);
             _avatar = new ImageBrush(avatarImage);
+        }
+
+        private void CreateDirectionsDictionary(PlayerType regionType)
+        {
+            List<Direction> directions = new List<Direction>();
+            List<string> imagesPath = new List<string>();
+
+            directions.Add(Direction.Up);
+            directions.Add(Direction.Down);
+            directions.Add(Direction.Left);
+            directions.Add(Direction.Right);
+
+            switch (regionType)
+            {
+                case PlayerType.Terrorist:
+                    imagesPath.Add("pack://application:,,,/Media/PlayerCounter/PlayerTopCounter.png");
+                    imagesPath.Add("pack://application:,,,/Media/PlayerCounter/PlayerDownCounter.png");
+                    imagesPath.Add("pack://application:,,,/Media/PlayerCounter/PlayerLeftCounter.png");
+                    imagesPath.Add("pack://application:,,,/Media/PlayerCounter/PlayerRightCounter.png");
+                    break;
+                case PlayerType.CounterTerrorist:
+                    imagesPath.Add("pack://application:,,,/Media/PlayerTerorist/PlayerTopTer.png");
+                    imagesPath.Add("pack://application:,,,/Media/PlayerTerorist/PlayerDown.Ter.png");
+                    imagesPath.Add("pack://application:,,,/Media/PlayerTerorist/PlayerLefTer.png");
+                    imagesPath.Add("pack://application:,,,/Media/PlayerTerorist/PlayerRightTer.png");
+                    break;
+                default:
+                    break;
+            }
+
+            var directionsArray = directions.ToArray();
+            var imagesPathArray = imagesPath.ToArray();
+            _directionImagesDictionary = new Dictionary<Direction, ImageBrush>();
+
+            for (int i = 0; i < 4; i++)
+            {
+                Uri imageUri = new Uri(imagesPathArray[i]);
+                ImageSource imageSource = new BitmapImage(imageUri);
+
+                _directionImagesDictionary.Add(directionsArray[i], new ImageBrush(imageSource));
+            }
         }
 
         private BitmapSource CreateBitmapSource(System.Windows.Media.Color color)
