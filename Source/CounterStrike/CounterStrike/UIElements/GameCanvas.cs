@@ -56,51 +56,53 @@ namespace CounterStrike.UIElements
 
             gameCanvas._playerOne.Fill = gameCanvas.PlayerOne.DirectionImage;
 
-            if (IsLegalMove(true, gameCanvas))
-            {
+            //if (IsLegalMove(true, gameCanvas))
+            //{
                 Canvas.SetLeft(gameCanvas._playerOne, gameCanvas.PlayerOne.PointNew.X);
                 Canvas.SetTop(gameCanvas._playerOne, gameCanvas.PlayerOne.PointNew.Y);
-            }
-            else
-            {
-                gameCanvas.PlayerOne.RevertPosition();
-            }
+            //}
+            //else
+            //{
+            //    gameCanvas.PlayerOne.RevertPosition();
+            //}
 
             return baseValue;
         }
 
-        private static bool IsLegalMove(bool IsPlayerOne, GameCanvas gameCanvas)
-        {
-            Rectangle playerRectangle;
-            Player player;
+        #region IsLegalMove Commented
+        //private static bool IsLegalMove(bool IsPlayerOne, GameCanvas gameCanvas)
+        //{
+        //    Rectangle playerRectangle;
+        //    Player player;
 
-            if (IsPlayerOne)
-            {
-                player = gameCanvas.PlayerOne;
-                playerRectangle = gameCanvas._playerOne;
-            }
-            else
-            {
-                player = gameCanvas.PlayerTwo;
-                playerRectangle = gameCanvas._playerTwo;
-            }
+        //    if (IsPlayerOne)
+        //    {
+        //        player = gameCanvas.PlayerOne;
+        //        playerRectangle = gameCanvas._playerOne;
+        //    }
+        //    else
+        //    {
+        //        player = gameCanvas.PlayerTwo;
+        //        playerRectangle = gameCanvas._playerTwo;
+        //    }
 
-            double X = player.PointNew.X;
-            double Y = player.PointNew.Y;
-            double Width = gameCanvas.ActualWidth - 30;
-            double Height = gameCanvas.ActualHeight - 33;
+        //    double X = player.PointNew.X;
+        //    double Y = player.PointNew.Y;
+        //    double Width = gameCanvas.ActualWidth - 30;
+        //    double Height = gameCanvas.ActualHeight - 33;
 
-            Rect playerRect = new Rect(player.PointNew.X,
-                                        player.PointNew.Y,
-                                        playerRectangle.Width,
-                                        playerRectangle.Height);
+        //    Rect playerRect = new Rect(player.PointNew.X,
+        //                                player.PointNew.Y,
+        //                                playerRectangle.Width,
+        //                                playerRectangle.Height);
 
-            if (X >= 0 && Y >= 0 && X <= Width && Y <= Height && !gameCanvas._wallsCoordinates.Any(x => x.IntersectsWith(playerRect)))
-            {
-                return true;
-            }
-            return false;
-        }
+        //    //if (X >= 0 && Y >= 0 && X <= Width && Y <= Height && !gameCanvas._wallsCoordinates.Any(x => x.IntersectsWith(playerRect)))
+        //    //{
+        //        return true;
+        //    //}
+        //    //return false;
+        //} 
+        #endregion
 
         // 2
         static bool ValidateValueCallbackMethodPlayerOne(object value)
@@ -149,15 +151,15 @@ namespace CounterStrike.UIElements
 
             gameCanvas._playerTwo.Fill = gameCanvas.PlayerTwo.DirectionImage;
 
-            if (IsLegalMove(false, gameCanvas))
-            {
+            //if (IsLegalMove(false, gameCanvas))
+            //{
                 Canvas.SetLeft(gameCanvas._playerTwo, gameCanvas.PlayerTwo.PointNew.X);
                 Canvas.SetTop(gameCanvas._playerTwo, gameCanvas.PlayerTwo.PointNew.Y);
-            }
-            else
-            {
-                gameCanvas.PlayerTwo.RevertPosition();
-            }
+            //}
+            //else
+            //{
+            //    gameCanvas.PlayerTwo.RevertPosition();
+            //}
 
             return baseValue;
         }
@@ -178,8 +180,7 @@ namespace CounterStrike.UIElements
         //------------------------------------------------------------------------
         // ----------------  WALS  -----------------------------------------------
 
-        //private Collection<Rectangle> _walls = new Collection<Rectangle>();
-        IEnumerable<Rect> _wallsCoordinates = new List<Rect>();
+        //IEnumerable<Rect> _wallsCoordinates = new List<Rect>();
         private static FrameworkPropertyMetadata _metadataWalls = new FrameworkPropertyMetadata(
             new PropertyChangedCallback(ChangedCallbackMethodWalls), new CoerceValueCallback(CoerceValueCallbackMethodWalls));
 
@@ -213,17 +214,25 @@ namespace CounterStrike.UIElements
                 {
                     Canvas.SetTop(wall.Recangle, wall.Y);
                     Canvas.SetLeft(wall.Recangle, wall.X);
-                    a.Children.Add(wall.Recangle);
+
+                    try
+                    {
+                        a.Children.Add(wall.Recangle);
+                    }
+                    catch (Exception)
+                    {
+                        continue;
+                    }
                 }
             }
             catch (Exception)
             {
             }
 
-            a._wallsCoordinates = a.Walls.Select(r => new Rect(Canvas.GetLeft(r.Recangle),
-                                                                Canvas.GetTop(r.Recangle),
-                                                                r.Recangle.Width,
-                                                                r.Recangle.Height));
+            //a._wallsCoordinates = a.Walls.Select(r => new Rect(Canvas.GetLeft(r.Recangle),
+            //                                                    Canvas.GetTop(r.Recangle),
+            //                                                    r.Recangle.Width,
+            //                                                    r.Recangle.Height));
 
             return baseValue;
         }
@@ -245,8 +254,7 @@ namespace CounterStrike.UIElements
         // ----------------  Bullet  -----------------------------------------------
 
 
-        //private Collection<Rectangle> _bullets = new Collection<Rectangle>();
-        IEnumerable<Rect> _bulletsCoordinates = new List<Rect>();
+        //IEnumerable<Rect> _bulletsCoordinates = new List<Rect>();
         private static FrameworkPropertyMetadata _metadataBullets = new FrameworkPropertyMetadata(
             new PropertyChangedCallback(ChangedCallbackMethodBullets), new CoerceValueCallback(CoerceValueCallbackMethodBullets));
 
@@ -292,10 +300,10 @@ namespace CounterStrike.UIElements
                     }
                 }
 
-                gameCanvas._bulletsCoordinates = gameCanvas.Bullets.Select(b => new Rect(Canvas.GetLeft(b.Recangle),
-                                                                                Canvas.GetTop(b.Recangle),
-                                                                                b.Recangle.Width,
-                                                                                b.Recangle.Height));
+                //gameCanvas._bulletsCoordinates = gameCanvas.Bullets.Select(b => new Rect(Canvas.GetLeft(b.Recangle),
+                //                                                                Canvas.GetTop(b.Recangle),
+                //                                                                b.Recangle.Width,
+                //                                                                b.Recangle.Height));
             }
             catch (Exception)
             {

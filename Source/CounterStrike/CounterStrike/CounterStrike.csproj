@@ -122,6 +122,7 @@
     <Compile Include="Controls\SignInControl.xaml.cs">
       <DependentUpon>SignInControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Engine\GameEngine.cs" />
     <Compile Include="Infrastructure\RelayCommands.cs" />
     <Compile Include="Model\BulletItem.cs" />
     <Compile Include="Model\EnvelopeWindowManager.cs" />
