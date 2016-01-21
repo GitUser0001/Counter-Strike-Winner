@@ -54,7 +54,7 @@ namespace CounterStrike.UIElements
         {
             var gameCanvas = (GameCanvas)d;
 
-            gameCanvas._playerOne.Fill = gameCanvas.PlayerOne.Avatar;
+            gameCanvas._playerOne.Fill = gameCanvas.PlayerOne.DirectionImage;
 
             if (IsLegalMove(true, gameCanvas))
             {
@@ -146,7 +146,7 @@ namespace CounterStrike.UIElements
         {
             var gameCanvas = (GameCanvas)d;
 
-            gameCanvas._playerTwo.Fill = gameCanvas.PlayerTwo.Avatar;
+            gameCanvas._playerTwo.Fill = gameCanvas.PlayerTwo.DirectionImage;
 
             if (IsLegalMove(false, gameCanvas))
             {
@@ -170,6 +170,8 @@ namespace CounterStrike.UIElements
         // 3
         static void ChangedCallbackMethodPlayerTwo(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
+            var gameCanvas = (GameCanvas)d;
+            gameCanvas._playerOne.Fill = gameCanvas.PlayerOne.Avatar;
             //var a = (GameCanvas)d;
             //a._playerTwo.Fill = a.PlayerTwo.Avatar;
             //Canvas.SetLeft(a._playerTwo, (e.NewValue as Player).Point.X);

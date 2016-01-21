@@ -17,8 +17,7 @@ namespace CounterStrikeLibrary
     {
         Terrorist,
         CounterTerrorist,
-        ADMIN,
-        Empty
+        ADMIN
     }
 
     public enum GameType

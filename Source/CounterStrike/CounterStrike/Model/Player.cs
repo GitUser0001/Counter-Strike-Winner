@@ -15,10 +15,13 @@ namespace CounterStrike.Model
     public class Player
     {
         private ImageBrush _avatar;
+        private ImageBrush _directionImage;
         private Point _pointNew;
         private Point _pointOld;
         private double _step;
         private Bullet _bullet;
+        private Dictionary<Direction, ImageBrush> _directionImagesDictionary;
+        private Direction _currentDirection = Direction.Down;
 
         /// <summary>
         /// Create Empty Заглушку
@@ -40,6 +43,7 @@ namespace CounterStrike.Model
 
 
             SetPlayerParameters(regionType);
+            CreateDirectionsDictionary(regionType);
         }
 
         public ImageBrush Avatar
@@ -82,6 +86,22 @@ namespace CounterStrike.Model
             }
         }
 
+        public ImageBrush DirectionImage
+        {
+            get
+            {
+                return _directionImage;
+            }
+        }
+
+        public Direction CurrentDirection
+        {
+            get
+            {
+                return _currentDirection;
+            }
+        }
+
         public Coordinate CoordinatePlayer { get; set; }
 
         public string NickName { get; set; }
@@ -111,6 +131,9 @@ namespace CounterStrike.Model
         {
             _pointOld.X = PointNew.X;
             _pointOld.Y = PointNew.Y;
+
+            _directionImage = _directionImagesDictionary[direction];
+            _currentDirection = direction;
 
             switch (direction)
             {
@@ -177,6 +200,47 @@ namespace CounterStrike.Model
             }
             ImageSource avatarImage = new BitmapImage(imageSource);
             _avatar = new ImageBrush(avatarImage);
+        }
+
+        private void CreateDirectionsDictionary(PlayerType regionType)
+        {
+            List<Direction> directions = new List<Direction>();
+            List<string> imagesPath = new List<string>();
+
+            directions.Add(Direction.Up);
+            directions.Add(Direction.Down);
+            directions.Add(Direction.Left);
+            directions.Add(Direction.Right);
+
+            switch (regionType)
+            {
+                case PlayerType.Terrorist:
+                    imagesPath.Add("pack://application:,,,/Media/PlayerCounter/PlayerTopCounter.png");
+                    imagesPath.Add("pack://application:,,,/Media/PlayerCounter/PlayerDownCounter.png");
+                    imagesPath.Add("pack://application:,,,/Media/PlayerCounter/PlayerLeftCounter.png");
+                    imagesPath.Add("pack://application:,,,/Media/PlayerCounter/PlayerRightCounter.png");
+                    break;
+                case PlayerType.CounterTerrorist:
+                    imagesPath.Add("pack://application:,,,/Media/PlayerTerorist/PlayerTopTer.png");
+                    imagesPath.Add("pack://application:,,,/Media/PlayerTerorist/PlayerDown.Ter.png");
+                    imagesPath.Add("pack://application:,,,/Media/PlayerTerorist/PlayerLefTer.png");
+                    imagesPath.Add("pack://application:,,,/Media/PlayerTerorist/PlayerRightTer.png");
+                    break;
+                default:
+                    break;
+            }
+
+            var directionsArray = directions.ToArray();
+            var imagesPathArray = imagesPath.ToArray();
+            _directionImagesDictionary = new Dictionary<Direction, ImageBrush>();
+
+            for (int i = 0; i < 4; i++)
+            {
+                Uri imageUri = new Uri(imagesPathArray[i]);
+                ImageSource imageSource = new BitmapImage(imageUri);
+
+                _directionImagesDictionary.Add(directionsArray[i], new ImageBrush(imageSource));
+            }
         }
 
         private BitmapSource CreateBitmapSource(System.Windows.Media.Color color)
