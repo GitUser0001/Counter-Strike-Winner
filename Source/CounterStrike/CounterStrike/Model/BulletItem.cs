@@ -29,7 +29,7 @@ namespace CounterStrike.Model
 
         public BulletItem(Point position, Direction direction, string ownerNickName, double radius, double speed, ImageBrush image)
         {
-            Position = position;
+            Position = new Point(position.X + 17,position.Y + 17);
             Recangle = new Rectangle();
             Recangle.Width = radius;
             Recangle.Height = radius;
